@@ -4,11 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I am a machine learning scientist at Microsoft, working on machine learning algorithms for business process optimization. I also teach graduate level deep learning course at the University of Virginia School of Data Science.
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+My interest are in general machine learning, deep representation learning, graph neural network, computer vision, natural language processing and multimodal learning.
 
 ### Contact me
 
