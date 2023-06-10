@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Causal Inference"
 date: 2023-06-09
 ---
