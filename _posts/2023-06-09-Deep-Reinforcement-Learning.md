@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Deep Reinforcement Learning"
 date: 2023-06-09
 ---
