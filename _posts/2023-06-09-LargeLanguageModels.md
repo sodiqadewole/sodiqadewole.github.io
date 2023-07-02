@@ -1,5 +1,5 @@
 ---
 layout: post
-title: "Multi-armed Bandits"
+title: "Large Language Models"
 date: 2023-06-10
 ---
