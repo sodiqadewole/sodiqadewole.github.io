@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Image Captioning with Tensorflow
-date: 2023-10-08
+date: 2023-06-08
 ---
 Adapted from Tutorial by [Magnus Erik Hvass Pedersen](http://www.hvass-labs.org/); Original git repo
 / [GitHub](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
