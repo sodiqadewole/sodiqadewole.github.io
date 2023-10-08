@@ -56,23 +56,9 @@ tf.__version__
 ```
 
 
-
-
-    '2.1.0'
-
-
-
-
 ```python
 tf.keras.__version__
 ```
-
-
-
-
-    '2.2.4-tf'
-
-
 
 ## Load Data
 
@@ -127,12 +113,7 @@ num_images_train = len(filenames_train)
 num_images_train
 ```
 
-
-
-
     118287
-
-
 
 Get the filenames and captions for the images in the validation-set.
 
@@ -352,12 +333,7 @@ transfer_values_size = K.int_shape(transfer_layer.output)[1]
 transfer_values_size
 ```
 
-
-
-
     4096
-
-
 
 ### Process All Images
 
@@ -567,16 +543,11 @@ captions_train_marked = mark_captions(captions_train)
 captions_train_marked[0]
 ```
 
-
-
-
     ['ssss Closeup of bins of food that include broccoli and bread. eeee',
      'ssss A meal is presented in brightly colored plastic trays. eeee',
      'ssss there are containers filled with different kinds of foods eeee',
      'ssss Colorful dishes holding meat, vegetables, fruit, and bread. eeee',
      'ssss A bunch of trays that have different food. eeee']
-
-
 
 This is how the captions look without the start- and end-markers.
 
@@ -585,16 +556,11 @@ This is how the captions look without the start- and end-markers.
 captions_train[0]
 ```
 
-
-
-
     ['Closeup of bins of food that include broccoli and bread.',
      'A meal is presented in brightly colored plastic trays.',
      'there are containers filled with different kinds of foods',
      'Colorful dishes holding meat, vegetables, fruit, and bread.',
      'A bunch of trays that have different food.']
-
-
 
 This helper-function converts a list-of-list to a flattened list of captions.
 
@@ -698,12 +664,7 @@ token_start = tokenizer.word_index[mark_start.strip()]
 token_start
 ```
 
-
-
-
     2
-
-
 
 Get the integer-token for the end-marker (the word "eeee").
 
@@ -713,12 +674,7 @@ token_end = tokenizer.word_index[mark_end.strip()]
 token_end
 ```
 
-
-
-
     3
-
-
 
 Convert all the captions from the training-set to sequences of integer-tokens. We get a list-of-list as a result.
 
@@ -739,16 +695,11 @@ Example of the integer-tokens for the captions of the first image in the trainin
 tokens_train[0]
 ```
 
-
-
-
     [[2, 841, 5, 2864, 5, 61, 26, 1984, 238, 9, 433, 3],
      [2, 1, 429, 10, 3310, 7, 1025, 390, 501, 1110, 3],
      [2, 63, 19, 993, 143, 8, 190, 958, 5, 743, 3],
      [2, 299, 725, 25, 343, 208, 264, 9, 433, 3],
      [2, 1, 170, 5, 1110, 26, 446, 190, 61, 3]]
-
-
 
 These are the corresponding text-captions:
 
@@ -756,9 +707,6 @@ These are the corresponding text-captions:
 ```python
 captions_train_marked[0]
 ```
-
-
-
 
     ['ssss Closeup of bins of food that include broccoli and bread. eeee',
      'ssss A meal is presented in brightly colored plastic trays. eeee',
@@ -908,12 +856,7 @@ Example of the transfer-values for the first image in the batch.
 batch_x['transfer_values_input'][0]
 ```
 
-
-
-
     array([0.   , 0.   , 1.483, ..., 0.   , 0.   , 0.813], dtype=float16)
-
-
 
 Example of the token-sequence for the first image in the batch. This is the input to the decoder-part of the neural network.
 
@@ -921,15 +864,9 @@ Example of the token-sequence for the first image in the batch. This is the inpu
 ```python
 batch_x['decoder_input'][0]
 ```
-
-
-
-
     array([   2,    1,   21,   80,   13,   34,  315,    1,   69,   20,   12,
               1, 1083,    3,    0,    0,    0,    0,    0,    0,    0],
           dtype=int32)
-
-
 
 This is the token-sequence for the output of the decoder. Note how it is the same as the sequence above, except it is shifted one time-step.
 
@@ -938,15 +875,10 @@ This is the token-sequence for the output of the decoder. Note how it is the sam
 batch_y['decoder_output'][0]
 ```
 
-
-
-
     array([   1,   21,   80,   13,   34,  315,    1,   69,   20,   12,    1,
            1083,    3,    0,    0,    0,    0,    0,    0,    0,    0],
           dtype=int32)
-
-
-
+          
 ### Steps Per Epoch
 
 One epoch is a complete processing of the training-set. We would like to process each image and caption pair only once per epoch. However, because each batch is chosen completely at random in the above batch-generator, it is possible that an image occurs in multiple batches within a single epoch, and it is possible that some images may not occur in any batch at all within a single epoch.
@@ -975,12 +907,7 @@ steps_per_epoch = int(total_num_captions_train / batch_size)
 steps_per_epoch
 ```
 
-
-
-
     1541
-
-
 
 ## Create the Recurrent Neural Network
 
@@ -1288,13 +1215,9 @@ generate_caption("images/parrot_cropped1.jpg")
     
 ![png](Image_Captioning_with_Tensorflow_files/Image_Captioning_with_Tensorflow_136_0.png)
     
-
-
     Predicted caption:
      a bird is sitting on a tree branch eeee
     
-    
-
 Try it with a picture of a person (Elon Musk). In Tutorial #07 the Inception model mis-classified this picture as being either a sweatshirt or a cowboy boot.
 
 
@@ -1306,13 +1229,9 @@ generate_caption("images/elon_musk.jpg")
     
 ![png](Image_Captioning_with_Tensorflow_files/Image_Captioning_with_Tensorflow_138_0.png)
     
-
-
     Predicted caption:
      a man in a suit and tie is standing outside eeee
     
-    
-
 Helper-function for loading an image from the COCO data-set and printing the true captions as well as the predicted caption.
 
 
@@ -1353,13 +1272,9 @@ Try this on a picture from the training-set that the model has been trained on. 
 ```python
 generate_caption_coco(idx=1, train=True)
 ```
-
-
-    
+   
 ![png](Image_Captioning_with_Tensorflow_files/Image_Captioning_with_Tensorflow_142_0.png)
     
-
-
     Predicted caption:
      a giraffe standing in a field next to a tree eeee
     
