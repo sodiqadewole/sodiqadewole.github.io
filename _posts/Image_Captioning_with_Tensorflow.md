@@ -1,5 +1,8 @@
-# Image Captioning
-
+---
+layout: post
+title: Image Captioning
+date: 2023-10-08
+---
 Adapted from Tutorial by [Magnus Erik Hvass Pedersen](http://www.hvass-labs.org/); Original git repo
 / [GitHub](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
 
