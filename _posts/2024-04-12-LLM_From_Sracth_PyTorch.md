@@ -3,7 +3,7 @@ layout: post
 title: Large Language Model From Scratch
 date: 2024-04-12
 ---
-Review of Transformer Networks and Applications.
+In this tutorial, we will build and train a large language model from scratch.
 
 ### Part I: Data Preparation and Preprocessing
 
