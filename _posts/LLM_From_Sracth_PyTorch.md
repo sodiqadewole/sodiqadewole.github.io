@@ -1,3 +1,10 @@
+---
+layout: post
+title: Large Language Model From Scratch
+date: 2024-12-04
+---
+Review of Transformer Networks and Applications.
+
 ### Part I: Data Preparation and Preprocessing
 
 In this section we cover the data preparation and sampling to get our input data ready for the LLM. You can download our sample data from here: https://en.wikisource.org/wiki/The_Verdict
