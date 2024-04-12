@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Large Language Model From Scratch
-date: 2024-12-04
+date: 2024-04-12
 ---
 Review of Transformer Networks and Applications.
 
