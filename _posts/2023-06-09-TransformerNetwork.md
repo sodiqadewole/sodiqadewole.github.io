@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Transformer Network
+title: Building MCP with RAG
 date: 2023-06-09
 ---
-Review of Transformer Networks and Applications.
+Model Context Protocol
