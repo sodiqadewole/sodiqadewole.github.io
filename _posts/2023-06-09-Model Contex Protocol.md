@@ -23,9 +23,8 @@ MCP servers relies on three (3) transport mechanisms:
 
 ##### MCP Server in python
 
-```ruby
-    puts "Hello World!"
-```
+![](https://github.com/sodiqadewole/AI-Agents/blob/main/Creating_MCP_Server.ipynb)
+
 
 ```python
 import random
