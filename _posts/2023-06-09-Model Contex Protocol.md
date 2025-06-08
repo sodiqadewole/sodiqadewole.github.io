@@ -23,6 +23,10 @@ MCP servers relies on three (3) transport mechanisms:
 
 ##### MCP Server in python
 
+```ruby
+    puts "Hello World!"
+```
+
 ```python
 import random
 
@@ -39,12 +43,10 @@ def add(a: int, b: int) -> int:
     print(f"[debug-server] add({a}, {b})")
     return a + b
 
-
 @mcp.tool()
 def get_secret_word() -> str:
     print("[debug-server] get_secret_word()")
     return random.choice(["apple", "banana", "cherry"])
-
 
 @mcp.tool()
 def get_current_weather(city: str) -> str:
@@ -53,7 +55,6 @@ def get_current_weather(city: str) -> str:
     endpoint = "https://wttr.in"
     response = requests.get(f"{endpoint}/{city}")
     return response.text
-
 ```
 
 #### Run Server

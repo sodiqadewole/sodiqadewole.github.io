@@ -68,6 +68,8 @@ kramdown:
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
     css_class: 'highlight'
+    syntax_highlighter_opts:
+      disable : false
 
 # Set the Sass partials directory, as we're using @imports
 sass:
