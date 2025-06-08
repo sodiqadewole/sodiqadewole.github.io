@@ -22,6 +22,7 @@ MCP servers relies on three (3) transport mechanisms:
 - Streamable HTTP where servers run remotely using the streamable HTTP transport defined in the MCP specification.
 
 ##### MCP Server in python
+
 ```python
 import random
 
@@ -56,6 +57,7 @@ def get_current_weather(city: str) -> str:
 ```
 
 #### Run Server
+
  ```python 
  import asyncio
 import os
