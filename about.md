@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
-I am a applied machine learning scientist at Microsoft, working on development of AI Agents for Microsoft AI ERP Portfolio offerings. I also teach graduate level deep learning course at the University of Virginia School of Data Science.
+I am a Machine Learning Scientist at Microsoft and Adjunct Professor at the School of Data Science UVA with a strong background in NLP, deep learning, reinforcement learning, generative models, small language model, vision language models and multimodal models. I have strong experience designing experiments, finetuning language models, building and applying machine learning models for various business applications.
 
-My interest are in large and small language models, reinforcement learning, deep representation learning, graph neural network, computer vision, natural language processing, multimodal learning and general machine learning.
+My interest are in generative models, large and small language models, reinforcement learning, deep representation learning, graph neural network, computer vision, natural language processing, multimodal learning and general machine learning.
 
 ### Contact me
 [soa2wg[at]virginia [dot] edu](mailto:soa2wg[at]virginia[dot]edu)
