@@ -17,3 +17,4 @@ Applied Scientist, Microsoft Corporation
 Technical Skills: Python, Azure, Tensorflow, Pytorch.
 
 ### Publications
+![Google Scholar](https://scholar.google.com/citations?hl=en&user=_9PC0VEAAAAJ&view_op=list_works&gmla=AH8HC4yITQfoOvfoqg8se9E3bfXzBhy7RYhvMqttD-sBHNq6QD_FjouTjnqDQj0JOpwHmIftHhVLfift2NFsrriDeyDSqEuuhXQdEQ)
