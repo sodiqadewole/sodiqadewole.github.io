@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data and Applied Machine Learning Scientst - AI ERP
+title: Applied Machine Learning Scientst
 permalink: /resume/
 ---
 
@@ -12,8 +12,8 @@ Applied Scientist, Microsoft Corporation
 - Ph.D, Systems and Information Engineering | University of Virginia (September 2021)
 - B.S, Mechanical Engineering | University of Ibadan (May 2012)
 
-### Projects
-AI ERP Agents
 
 ### Skills
 Technical Skills: Python, Azure, Tensorflow, Pytorch.
+
+### Publications
