@@ -1,3 +1,10 @@
+---
+layout: post
+title: Object Detection with Yolo
+published: true
+date: 2025-06-06
+---
+
 ```python
 import cv2
 import math
