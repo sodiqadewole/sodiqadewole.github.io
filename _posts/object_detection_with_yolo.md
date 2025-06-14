@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Projects
-permalink: /projects/
+title: Object Detection with yolo v8
+date: 2024-04-12
+published: true
 ---
 
 <html lang="en">
