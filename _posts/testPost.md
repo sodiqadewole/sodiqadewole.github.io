@@ -1,4 +1,3 @@
-```python
 ---
 layout: post
 title: Test Post
@@ -6,7 +5,7 @@ tags: Intelligent Systems
 published: true
 ---
 
-
+```python
 def test_function(x):
     return x
 
