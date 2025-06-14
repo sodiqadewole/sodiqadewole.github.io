@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Applied Machine Learning Scientst
+published: true
 permalink: /resume/
 ---
 
