@@ -11,12 +11,28 @@ description: Personal Website
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/sodiqadewole/sodiqadewole.github.io/main/assets/images/sodiqadewole.png
 
-remote_theme: "minima"
+theme: minima
+
+remote_theme: "jekyll/minima@d4d779a"
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
 
 minima:
-  nav_pages:
-    - about.md
-    - portfolio.md
+  # Minima skin selection. Available skins are:
+    # * classic            Default, light color scheme.
+    # * dark               Dark variant of the classic skin.
+    # * auto               Adaptive skin based on the classic and dark skins.
+    # * solarized-light    Light variant of solarized color scheme.
+    # * solarized-dark     Dark variant of solarized color scheme.
+    # * solarized          Adaptive skin for solarized color scheme skins.
+  skin: dark
+
+# minima:
+#   nav_pages:
+#     - about.md
+#     - portfolio.md
 #
 # Flags below are optional
 #
