@@ -1,27 +1,18 @@
-name: Continuous Integration
 on:
   push:
-    branches:
-      - master
   pull_request:
-    branches:
-      - master
+    types: [opened, synchronize]
 jobs:
   build:
-    name: "Test with Jekyll ${{ matrix.jekyll }}"
-    runs-on: "ubuntu-latest"
-    strategy:
-      matrix:
-        jekyll: ["~> 3.9", "~> 4.2"]
-    env:
-      JEKYLL_VERSION: ${{ matrix.jekyll }}
+    runs-on: ubuntu-latest
+    name: script/cibuild
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Set Up Ruby 2.7
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.2
           bundler-cache: true
-      - name: Run tests
+      - name: build
+        run: script/bootstrap
+      - name: test
         run: script/cibuild
