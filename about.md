@@ -4,9 +4,15 @@ title: About
 permalink: /about/
 ---
 
-I am a Machine Learning Scientist at Microsoft and Adjunct Professor at the School of Data Science UVA with a strong background in NLP, deep learning, reinforcement learning, generative models, small language model, vision language models and multimodal models. I have strong experience designing experiments, finetuning language models, building and applying machine learning models for various business applications.
+This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
 
-My interest are in generative models, large and small language models, reinforcement learning, deep representation learning, graph neural network, computer vision, natural language processing, multimodal learning and general machine learning.
+You can find the source code for Minima at GitHub:
+[jekyll][jekyll-organization] /
+[minima](https://github.com/jekyll/minima)
 
-### Contact me
-[soa2wg[at]virginia [dot] edu](mailto:soa2wg[at]virginia[dot]edu)
+You can find the source code for Jekyll at GitHub:
+[jekyll][jekyll-organization] /
+[jekyll](https://github.com/jekyll/jekyll)
+
+
+[jekyll-organization]: https://github.com/jekyll

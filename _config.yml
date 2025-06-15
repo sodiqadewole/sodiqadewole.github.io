@@ -1,113 +1,92 @@
+# Site-wide settings
+# ------------------
 #
-# This file contains configuration flags to customize your site
+# title: Your awesome title
 #
+# author:
+#   name: GitHub User
+#   email: your-email@domain.com
+#
+# The `>` after `description:` means to ignore line-breaks until next key. If
+#   you wish to omit the line-break after the end of text, use `>-` instead.
+# description: >
+#   Write an awesome description for your new site here. You can edit this line
+#   in _config.yml. It will appear in your document head meta (for Google search
+#   results) and in your feed.xml site description.
 
-# Name of your site (displayed in the header)
-name: Sodiq Adewole
 
-# Short bio or description (displayed in the header)
-description: Personal Website
+# Build settings
+# --------------
+#
+# If you wish to use the gem-version of Minima with or without a Gemfile, use
+#   the following setting:
+# theme: minima
+#
+# **OR** if you wish to use the theme directly from the GitHub repository by
+#   bypassing a Gemfile, use the following setting instead.
+#   It is best that you lock to a particular commit and update if uptream changes
+#   do not affect your site adversely.
+# remote_theme: jekyll/minima@d4d779a
+#
+# Minima requires the following plugins:
+# plugins:
+#  - jekyll-feed
+#  - jekyll-seo-tag
+#
+# Uncomment the following setting if you wish to disable deprecation warnings
+#   from newer versions of sass converter. Adapt as required.
+# sass:
+#   quiet_deps: true
+#   silence_deprecations: [import]
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/sodiqadewole/sodiqadewole.github.io/main/assets/images/sodiqadewole.png
 
-theme: minima
-
-remote_theme: "jekyll/minima@d4d779a"
-
-plugins:
- - jekyll-feed
- - jekyll-seo-tag
-
-minima:
-  # Minima skin selection. Available skins are:
-    # * classic            Default, light color scheme.
-    # * dark               Dark variant of the classic skin.
-    # * auto               Adaptive skin based on the classic and dark skins.
-    # * solarized-light    Light variant of solarized color scheme.
-    # * solarized-dark     Dark variant of solarized color scheme.
-    # * solarized          Adaptive skin for solarized color scheme skins.
-  skin: dark
-
+# Minima-specific settings (applicable to Minima v3 and above only)
+# -----------------------------------------------------------------
+#
+#  *All described config keys below should be nested under the top-level
+#   `minima` key.*
+#
 # minima:
-  nav_pages:
-    - about.md
-#     - portfolio.md
+#   Minima skin selection. Available skins are:
+#     * classic            Default, light color scheme.
+#     * dark               Dark variant of the classic skin.
+#     * auto               Adaptive skin based on the classic and dark skins.
+#     * solarized-light    Light variant of solarized color scheme.
+#     * solarized-dark     Dark variant of solarized color scheme.
+#     * solarized          Adaptive skin for solarized color scheme skins.
+#   skin: auto
 #
-# Flags below are optional
+#   Specific pages for site navigation.
+#     If you wish to link only specific pages in the site-navigation, use this
+#     and list the `path` property (as represented via Liquid) of the pages in
+#     the order they should be rendered.
+#   nav_pages:
+#     - about.md
 #
 #   Set to `true` to show excerpts on the homepage.
-  show_excerpts: false
-
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email:
-  facebook:
-  flickr:
-  github: sodiqadewole
-  instagram:
-  linkedin: /sodiq-adewole-phd/
-  pinterest:
-  rss: # just type anything here for a working RSS icon
-  twitter: # jekyllrb
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
-  googlescholar: https://scholar.google.com/citations?user=3v83eq4AAAAJ&hl=en&oi=ao
-
-
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-# disqus:
-
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-# google_analytics:
-
-# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
-# Used for Sitemap.xml and your RSS feed
-url: https://sodiqadewole.github.io/
-
-# If you're hosting your site at a Project repository on GitHub pages
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
-
+#   show_excerpts: false
 #
-# !! You don't need to change any of the configuration flags below !!
+#   Minima date format.
+#     The default value is "%b %d, %Y" (e.g. Nov 14, 2023).
+#     Refer to https://shopify.github.io/liquid/filters/date/ for valid values
+#   date_format: "%b-%d-%Y"
 #
-
-# permalink: /:title/
-
-# The release of Jekyll Now that you're using
-version: v1.2.0
-
-# Jekyll 3 now only supports Kramdown for Markdown
-kramdown:
-  # Use GitHub flavored markdown, including triple backtick fenced code blocks
-  input: GFM
-  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
-    syntax_highlighter_opts:
-      disable : false
-
-# Set the Sass partials directory, as we're using @imports
-sass:
-  style: :expanded # You might prefer to minify using :compressed
-
-# Use the following plug-ins
-gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-
-# Exclude these files from your production _site
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - README.md
-  - CNAME
+#   Social Media Links.
+#     Renders icons via Font Awesome Free webfonts CDN, based on ordered list of
+#     entries. Valid entry keys:
+#       * title    Tooltip rendered on hovering over icon.
+#       * icon     Font Awesome icon id. `github` corresponds to `fa-github`.
+#       * url      Full URL of social profile.
+#   social_links:
+#     - title: Minima Theme repository at GitHub
+#       icon: github
+#       url: "https://github.com/jekyll/minima"
+#     - title: Jekyll at X (formerly Twitter)
+#       icon: x-twitter
+#       url: "https://x.com/jekyllrb"
+#
+#   Hide syndication feed subscription link.
+#     RSS / Atom feed link is always rendered as the last item of social-links
+#     list. Set below key to `true` to not have the link to feed rendered as
+#     part of social-links list.
+#   hide_site_feed_link: false
