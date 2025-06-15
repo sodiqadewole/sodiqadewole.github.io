@@ -2,6 +2,7 @@
 layout: default
 ---
 
+### Welcome
 <!-- Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`. -->
 
 <!-- [Link to another page](./another-page.html). -->
@@ -30,10 +31,10 @@ var fun = function lang(l) {
 }
 ``` -->
 
-```python
+<!-- ```python
   def main():
     return 'done'
-```
+``` -->
 
 <!-- ```ruby
 # Ruby code with syntax highlighting
