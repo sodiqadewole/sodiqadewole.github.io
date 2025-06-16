@@ -9,4 +9,4 @@ layout: default
 <h3> Skills </h3>
 <h3> Publications </h3>
 <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C48&q=sodiq+adewole&btnG="> Google scholar profile</a>
-<a href="https://www.linkedin.com/in/sodiq-adewole-phd/"></a>
+<a href="https://www.linkedin.com/in/sodiq-adewole-phd/"> LinkedIn Profile </a>
