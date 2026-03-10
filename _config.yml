@@ -4,8 +4,14 @@ title: Sodiq Adewole
 # show_downloads: false
 # show_githublink: false
 # google_analytics:
-theme: minima
 
-plugins:
- - jekyll-feed
- - jekyll-seo-tag
+
+# Build settings
+theme: minima
+# plugins:
+#   - jekyll-feed
+#   - jekyll-seo-tag
+#   - jekyll-sitemap
+#   - jekyll-paginate
+# paginate: 5
+# paginate_path: "/page:num/"
