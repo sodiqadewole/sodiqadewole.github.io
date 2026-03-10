@@ -1,8 +1,3 @@
 ---
-layout: default
+layout: home
 ---
-### Welcome to my portfolio page
-
-```
-Truth is a probability
-```
