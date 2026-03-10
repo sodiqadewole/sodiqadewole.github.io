@@ -1,6 +1,11 @@
 title: Sodiq Adewole
-description: Welcome to my portfolio page.
-show_downloads: false
-show_githublink: false
-google_analytics:
+
+# description: Welcome to my portfolio page.
+# show_downloads: false
+# show_githublink: false
+# google_analytics:
 theme: minima
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
