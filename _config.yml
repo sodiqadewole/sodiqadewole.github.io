@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Sodiq Adewole / Home Page"
+title                    : "Sodiq Adewole Personal Website" # Update this with the title of your site, this is the default if not overridden by a page
 title_separator          : "-"
 name                     : &name "Sodiq Adewole"
 description              : &description "Sodiq Adewole's portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Sodiq Adewole"
   pronouns         : # example: "she/her"  
-  bio              : "Applied AI Engineer | Researcher | Data Scientist | Software Engineer | Tech Enthusiast"
+  bio              : "Applied AI Engineer | AI Researcher | Applied Scientist | Machine Learning Engineer"
   location         : "United States"
   employer         : "Microsoft"
   uri              : # URL
