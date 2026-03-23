@@ -12,6 +12,7 @@ redirect_from:
 Education
 ======
 * Ph.D in Systems and Information Engineering, University of Virginia, USA
+  * Research Work: Deep Learning, Video Processing, Intelligent Dialogue Systems
 * B.S. Mechanical Engineering, University of Ibadan
 
 Work experience
@@ -21,7 +22,6 @@ Work experience
 
 * June 2024 - November 2025: Applied Scientist,
   * Microsoft Dynamics 365 AI-ERP
-
 
 * February 2022 - June 2024: Applied Scientist
   * Microsoft IDEAS Copilot Agent
@@ -46,6 +46,13 @@ Skills
 
 * Programming Language
   * Python
+
+* ML / DL Framework
+  * Scikit-learn
+  * PyTorch
+  * Tensorflow
+  * Transformers
+
 
 <!-- Publications
 ======
