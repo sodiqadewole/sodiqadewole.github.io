@@ -1,5 +1,5 @@
 ---
-title: "LLM Agent with Memory on Local Machine"
+title: "Building LLM Agent with Memory on Local Machine"
 excerpt: "Building Local LLM Agent with Memory"
 collection: portfolio
 ---
