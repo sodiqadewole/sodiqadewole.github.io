@@ -11,35 +11,42 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D in Systems and Information Engineering, University of Virginia
+* B.S. Mechanical Engineering, University of Ibadan
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* November 2025 - Date: Applied AI Engineer
+  * Microsoft M365 Sales Agent Team
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* June 2024 - November 2025: Applied Scientist,
+  * Microsoft Dynamics 365 AI-ERP
+  <!-- * Duties included: Merging pull requests
+  * Supervisor: Professor Hub -->
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* February 2022 - June 2024: Applied Scientist
+  * Microsoft IDEAS Copilot Agent
+  <!-- * Duties included: Tagging issues
+  * Supervisor: Professor Git -->
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* AI Agent and Natural Language Processing
+  * Natural Langauge Processing (NLP)
+  * Large Language Model (LLM)
+  * Deep Learning
+  * Deep Reinforcement Learning
+  * Computer Vision
+
+* Multimodal Modeling
+  * Multimodal Language Modeling
+  * Visual Language Model
+  * Computer Vision
+
+* Machine Learning
+  * Machine Learning
+  * Statistical Machine Learning
+
 
 Publications
 ======
@@ -47,7 +54,7 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
+<!-- Talks
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
@@ -61,4 +68,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams -->
