@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Systems and Information Engineering, University of Virginia
+* Ph.D in Systems and Information Engineering, University of Virginia, USA
 * B.S. Mechanical Engineering, University of Ibadan
 
 Work experience
@@ -21,13 +21,10 @@ Work experience
 
 * June 2024 - November 2025: Applied Scientist,
   * Microsoft Dynamics 365 AI-ERP
-  <!-- * Duties included: Merging pull requests
-  * Supervisor: Professor Hub -->
+
 
 * February 2022 - June 2024: Applied Scientist
   * Microsoft IDEAS Copilot Agent
-  <!-- * Duties included: Tagging issues
-  * Supervisor: Professor Git -->
   
 Skills
 ======
@@ -47,12 +44,14 @@ Skills
   * Machine Learning
   * Statistical Machine Learning
 
+* Programming Language
+  * Python
 
-Publications
+<!-- Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  {% endfor %}</ul> -->
   
 <!-- Talks
 ======
