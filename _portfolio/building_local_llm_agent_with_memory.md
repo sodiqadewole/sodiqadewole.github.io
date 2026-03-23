@@ -1,4 +1,11 @@
+---
+title: "LLM Agent with Memory"
+excerpt: "Building Local LLM Agent with Memory"
+collection: portfolio
+---
 
+This project covers how to build llm agent with conversation memory on your local machine using any pretrained model.
+ 
 ``` python
 !wget https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/resolve/main/Phi-3-mini-4k-instruct-fp16.gguf
 ```
