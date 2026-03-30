@@ -456,13 +456,7 @@ model
       )
     )
 
-``` python
-model.save_pretrained("blip2-opt-2.7b") # Save the BLIP-2 model to a local directory (e.g., "blip2-opt-2.7b")
-processor.save_pretrained("blip2-opt-2.7b") # Save the processor for the BLIP-2 model to the same local directory (e.g., "blip2-opt-2.7b")
-```
 
-```
-    ['blip2-opt-2.7b/processor_config.json']
 
 ``` python
 from urllib.request import urlopen
@@ -473,8 +467,6 @@ image = Image.open(urlopen(car_path)).convert('RGB') # Load the image from the s
 
 image
 ```
-
-![](dbfc2ff16cbc24cedbd67befac573139d785198a.jpg)
 
 
 ``` python
@@ -493,6 +485,7 @@ processor.tokenizer
     	2: AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True, special=True),
     	50265: AddedToken("<image>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
     })
+
 
 ``` python
 # Preprocess the text
