@@ -1,0 +1,156 @@
+---
+title: 'Simple Multimodal Image Search Using Vision Transformer'
+date: 2026-03-26
+permalink: /posts/2026/03/multimodal_image_search/
+tags:
+  - Multimodal
+  - Image Search
+  - Language Model
+  - Vision Transformer
+---
+
+This post covers implementation of a simple multimodal image search using vision transformer.
+
+``` python
+from urllib.request import urlopen
+from PIL import Image
+
+
+# load the image from the URL
+url = "https://as2.ftcdn.net/v2/jpg/15/03/72/47/1000_F_1503724764_pB2di1c2uwzmwT7fgsroGRz2LdGdh3CG.jpg"
+image = Image.open(urlopen(url)).convert("RGB")
+
+# display image
+image.show()
+
+caption = ['Intense tiger hunt, Bengal tiger capturing prey in a dramatic water scene']
+```
+
+``` python
+from transformers import CLIPTokenizerFast, CLIPProcessor, CLIPModel
+
+# Load the CLIP model and processor
+model_name = "openai/clip-vit-base-patch32"
+
+# Load the tokenizer and processor for the CLIP model
+
+# The CLIPTokenizerFast is used for tokenizing text inputs
+tokenizer = CLIPTokenizerFast.from_pretrained(model_name)
+
+# The CLIPProcessor is used for processing both images and text inputs for the CLIP model
+processor = CLIPProcessor.from_pretrained(model_name)
+
+# Load the CLIP model
+model = CLIPModel.from_pretrained(model_name)
+```
+
+
+``` python
+# Tokenize the caption
+inputs = tokenizer(caption, return_tensors="pt", padding=True)
+inputs # dictionary containing input_ids and attention_mask for the text input
+```
+
+    {'input_ids': tensor([[49406, 10258,  6531,  5774,   267, 16374,  6531, 19548, 17131,   530,
+               320, 11240,  1573,  3562, 49407]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])}
+
+The tokenized input contains both the input_id and attention mask
+
+``` python
+# convert the input back to tokens
+tokenizer.convert_ids_to_tokens(inputs.input_ids[0])
+```
+
+    ['<|startoftext|>',
+     'intense</w>',
+     'tiger</w>',
+     'hunt</w>',
+     ',</w>',
+     'bengal</w>',
+     'tiger</w>',
+     'capturing</w>',
+     'prey</w>',
+     'in</w>',
+     'a</w>',
+     'dramatic</w>',
+     'water</w>',
+     'scene</w>',
+     '<|endoftext|>']
+
+which gives the following
+
+``` python
+# Create a text embedding for the caption
+text_embedding = model.get_text_features(**inputs) # Get the text features (embedding) from the CLIP model for the given input
+text_embedding.shape # (1, 512) - the CLIP model produces a 512-dimensional embedding for the text input
+```
+
+    torch.Size([1, 512])
+
+``` python
+# Process the image
+image_inputs = processor(
+    text=None,
+    images=image, 
+    return_tensors="pt")['pixel_values']
+# processor returns a dictionary, we need to extract the pixel values for the image
+image_inputs.shape # (1, 3, 224, 224) - the CLIP model expects images to be resized to 224x224 and normalized, with 3 color channels (RGB)
+```
+
+
+    torch.Size([1, 3, 224, 224])
+
+``` python
+# Visualize the processed image
+import matplotlib.pyplot as plt
+import torch
+import numpy as np
+
+# Convert the image tensor to a numpy array for visualization
+img = image_inputs.squeeze(0)
+img = img.permute(*torch.arange(img.ndim - 1, -1, -1))  # Change from (C, H, W) to (H, W, C)
+img = img.numpy()  # Convert to numpy array
+img = (img - img.min()) / (img.max() - img.min())  # Normalize the image to the range [0, 1] for visualization
+# visualize the image
+plt.imshow(img)
+plt.axis('off')
+```
+
+    (-0.5, 223.5, 223.5, -0.5)
+
+![](78f963b66267556b3c3aea725877636f169de1f5.png)
+
+``` python
+image_embedding = model.get_image_features(image_inputs) # Get the image features (embedding) from the CLIP model for the given input
+image_embedding.shape # (1, 512) - the CLIP model produces a 512
+```
+
+
+    torch.Size([1, 512])
+
+
+The shape of the resulting image embedding is same as the shape of the
+text embedding. This allows us to compare the emebedding to see if they
+are similar.
+
+
+``` python
+# Normalize the text and image embeddings
+text_embedding = text_embedding / text_embedding.norm(dim=-1, keepdim=True)
+image_embedding = image_embedding / image_embedding.norm(dim=-1, keepdim=True)
+
+# Compute the cosine similarity between the text and image embeddings
+text_embedding = text_embedding.cpu().detach().numpy()
+image_embedding = image_embedding.cpu().detach().numpy()
+
+similarity_score = np.dot(text_embedding, image_embedding.T) # Compute the dot product between the text and image embeddings
+similarity_score = similarity_score.squeeze() # Remove any extra dimensions
+
+print(f"Cosine similarity score between the text and image embeddings: {similarity_score:.4f}")
+```
+
+
+    Cosine similarity score between the text and image embeddings: 0.3434
+
+``` python
+```
