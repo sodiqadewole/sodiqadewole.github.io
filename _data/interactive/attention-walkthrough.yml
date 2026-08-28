@@ -1,0 +1,45 @@
+tokens:
+  - The
+  - model
+  - learns
+stages:
+  - title: Start with token embeddings
+    explanation: Each token begins as a vector that represents its current meaning before it considers the surrounding context.
+    active_token: 1
+    query: [0.2, 0.8]
+    keys: [[0.1, 0.7], [0.7, 0.2], [0.5, 0.5]]
+    scores: [0.58, 0.30, 0.50]
+    weights: [0.37, 0.28, 0.35]
+    output: "The token model starts with its own embedding."
+  - title: Project the active token into a query
+    explanation: "Learned query weights turn the embedding of model into a query: what contextual information should this token look for?"
+    active_token: 1
+    query: [0.8, 0.3]
+    keys: [[0.1, 0.7], [0.7, 0.2], [0.5, 0.5]]
+    scores: [0.29, 0.62, 0.55]
+    weights: [0.27, 0.38, 0.35]
+    output: "The query now describes the context model is seeking."
+  - title: Score every key
+    explanation: The query is compared with every key using a dot product. Larger scores mean a stronger match with the active token's query.
+    active_token: 1
+    query: [0.8, 0.3]
+    keys: [[0.1, 0.7], [0.7, 0.2], [0.5, 0.5]]
+    scores: [0.29, 0.62, 0.55]
+    weights: [0.27, 0.38, 0.35]
+    output: "model matches its own key most strongly in this toy example."
+  - title: Normalize scores with softmax
+    explanation: Softmax converts the raw scores into positive attention weights that sum to one, creating a distribution over the three tokens.
+    active_token: 1
+    query: [0.8, 0.3]
+    keys: [[0.1, 0.7], [0.7, 0.2], [0.5, 0.5]]
+    scores: [0.29, 0.62, 0.55]
+    weights: [0.27, 0.38, 0.35]
+    output: "Attention weights: 27%, 38%, and 35%."
+  - title: Build the contextual output
+    explanation: The model takes a weighted sum of value vectors. The result is a new representation of model informed by the entire sequence.
+    active_token: 1
+    query: [0.8, 0.3]
+    keys: [[0.1, 0.7], [0.7, 0.2], [0.5, 0.5]]
+    scores: [0.29, 0.62, 0.55]
+    weights: [0.27, 0.38, 0.35]
+    output: "Contextual embedding for model combines information from The, model, and learns."

@@ -1,0 +1,80 @@
+{% assign walkthrough = site.data.interactive[include.data] %}
+{% assign walkthrough_id = include.id | default: include.data %}
+<section class="step-through" data-step-through id="{{ walkthrough_id }}">
+  <header class="step-through__header">
+    <p class="step-through__eyebrow">Interactive walkthrough</p>
+    <h3>{{ include.title }}</h3>
+    <div class="step-through__overview" aria-label="Self-attention flow: input tokens become queries, keys, and values; query-key scores become attention weights; weighted values form a contextual token representation.">
+      <div class="step-through__overview-stage">
+        <span class="step-through__overview-label">Input tokens</span>
+        <div class="step-through__overview-tokens" aria-hidden="true">
+          {% for token in walkthrough.tokens %}
+            <span>{{ token }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <span class="step-through__overview-arrow" aria-hidden="true">&#8594;</span>
+      <div class="step-through__overview-stage">
+        <span class="step-through__overview-label">Learned projections</span>
+        <div class="step-through__overview-projections" aria-hidden="true">
+          <span>Q</span><span>K</span><span>V</span>
+        </div>
+      </div>
+      <span class="step-through__overview-arrow" aria-hidden="true">&#8594;</span>
+      <div class="step-through__overview-stage">
+        <span class="step-through__overview-label">Attention weights</span>
+        <div class="step-through__overview-bars" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+      </div>
+      <span class="step-through__overview-arrow" aria-hidden="true">&#8594;</span>
+      <div class="step-through__overview-stage">
+        <span class="step-through__overview-label">Contextual output</span>
+        <div class="step-through__overview-output" aria-hidden="true">model*</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="step-through__canvas" aria-live="polite">
+    <div class="step-through__tokens" aria-label="Input tokens">
+      {% for token in walkthrough.tokens %}
+        <span class="step-through__token" data-attention-token="{{ forloop.index0 }}">{{ token }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="step-through__flow" aria-hidden="true">
+      <div class="step-through__vector">
+        <span>Query</span>
+        <strong data-attention-query></strong>
+      </div>
+      <span class="step-through__operator">dot</span>
+      <div class="step-through__key-list">
+        {% for token in walkthrough.tokens %}
+          <span data-attention-key="{{ forloop.index0 }}">Key for {{ token }}</span>
+        {% endfor %}
+      </div>
+      <span class="step-through__operator">softmax</span>
+      <div class="step-through__weights">
+        {% for token in walkthrough.tokens %}
+          <span data-attention-weight="{{ forloop.index0 }}"></span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <p class="step-through__output" data-attention-output></p>
+  </div>
+
+  <div class="step-through__copy">
+    <p class="step-through__counter" data-step-counter></p>
+    <h4 data-step-title></h4>
+    <p data-step-description></p>
+  </div>
+
+  <div class="step-through__controls" aria-label="Walkthrough controls">
+    <button class="step-through__button" type="button" data-step-action="previous">Previous</button>
+    <button class="step-through__button step-through__button--primary" type="button" data-step-action="next">Next</button>
+    <button class="step-through__button" type="button" data-step-action="reset">Reset</button>
+  </div>
+
+  <script type="application/json" data-step-data>{{ walkthrough | jsonify }}</script>
+</section>
