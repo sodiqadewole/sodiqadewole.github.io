@@ -1,0 +1,34 @@
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Jekyll build artifacts ---
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# --- Ruby / Bundler artifacts ---
+.bundle/
+vendor/bundle/
+
+# --- Node artifacts ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Python / Notebook artifacts ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# --- Logs / temp ---
+*.log
+tmp/
+log/
+
+# --- Optional generated notebook output ---
+talkmap_out.ipynb
