@@ -218,6 +218,19 @@ a {
   margin-bottom: 0.65rem;
 }
 
+.cv-entry__highlights {
+  margin: 0.7rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.cv-entry__highlights li {
+  margin-bottom: 0.4rem;
+}
+
+.cv-entry__highlights li:last-child {
+  margin-bottom: 0;
+}
+
 .cv-entry__institution {
   color: var(--site-muted);
   font-size: 0.9rem;
@@ -351,28 +364,12 @@ a {
   }
 }
 
-.teaching-talks-intro {
-  margin: 0 0 2.2rem;
-  padding: 1.25rem 1.4rem;
-  border-left: 4px solid var(--site-coral);
-  background: rgba(20, 125, 128, 0.045);
-}
-
-.teaching-talks-intro p {
-  margin-bottom: 0;
-}
-
-.teaching-talks-intro__eyebrow {
-  margin-bottom: 0.45rem !important;
-  color: var(--site-teal-dark);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .teaching-talks-section {
   margin-top: 2.6rem;
+}
+
+.teaching-talks-section:first-of-type {
+  margin-top: 1.2rem;
 }
 
 .archive .teaching-talks-section h2 {
