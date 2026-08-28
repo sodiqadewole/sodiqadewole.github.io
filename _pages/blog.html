@@ -1,0 +1,58 @@
+---
+layout: archive
+title: "Blog"
+permalink: /blog/
+author_profile: true
+---
+
+{% include base_path %}
+
+<div class="blog-index-intro">
+  <p>Notes and practical explorations in machine learning systems, language models, and applied AI.</p>
+</div>
+
+<div class="blog-tree">
+  {% for category in site.data.blog-categories %}
+    {% assign category_posts = site.posts | where: "blog_category", category.id %}
+    <section class="blog-tree__category" id="{{ category.id }}">
+      <div class="blog-tree__heading">
+        <h2>{{ category.title }}</h2>
+        <span class="blog-tree__count">{{ category_posts.size }} {% if category_posts.size == 1 %}post{% else %}posts{% endif %}</span>
+      </div>
+      <p class="blog-tree__description">{{ category.description }}</p>
+
+      {% if category_posts.size > 0 %}
+        {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
+        {% for section in sections %}
+          <div class="blog-tree__branch">
+            <h3>{{ section }}</h3>
+            <ul>
+              {% for post in category_posts %}
+                {% if post.blog_section == section %}
+                  <li>
+                    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                    <span>{{ post.date | date: "%B %-d, %Y" }}</span>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+
+        {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
+        {% if ungrouped_posts.size > 0 %}
+          <ul class="blog-tree__posts">
+            {% for post in ungrouped_posts %}
+              <li>
+                <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                <span>{{ post.date | date: "%B %-d, %Y" }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% else %}
+        <p class="blog-tree__empty">New articles coming soon.</p>
+      {% endif %}
+    </section>
+  {% endfor %}
+</div>

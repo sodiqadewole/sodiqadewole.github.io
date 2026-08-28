@@ -9,7 +9,7 @@
 
 main:
   - title: "Blog"
-    url: /year-archive/
+    url: /blog/
 
   - title: "Publications"
     url: /publications/

@@ -160,6 +160,129 @@ a {
   }
 }
 
+.blog-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0 1.75rem;
+  color: var(--site-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.blog-index-intro {
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+  color: var(--site-muted);
+  font-size: 1.06rem;
+}
+
+.blog-tree {
+  border-top: 2px solid var(--site-teal);
+}
+
+.blog-tree__category {
+  padding: 1.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--site-rule);
+}
+
+.blog-tree__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.archive .blog-tree__heading h2 {
+  margin: 0;
+  color: var(--site-ink);
+  font-size: 1.5rem;
+}
+
+.blog-tree__count {
+  flex: 0 0 auto;
+  color: var(--site-teal-dark);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.blog-tree__description,
+.blog-tree__empty {
+  margin: 0.35rem 0 0;
+  color: var(--site-muted);
+}
+
+.blog-tree__branch {
+  margin: 1.1rem 0 0 1rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--site-rule);
+}
+
+.blog-tree__branch h3 {
+  margin: 0 0 0.45rem;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.88rem;
+}
+
+.blog-tree__branch ul,
+.blog-tree__posts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-tree li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+}
+
+.blog-tree li::before {
+  width: 0.45rem;
+  height: 1px;
+  flex: 0 0 0.45rem;
+  content: "";
+  background: var(--site-coral);
+}
+
+.blog-tree li a {
+  margin-right: auto;
+  font-weight: 600;
+}
+
+.blog-tree li span {
+  flex: 0 0 auto;
+  color: var(--site-muted);
+  font-size: 0.78rem;
+}
+
+.blog-tree__posts {
+  margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+  .blog-tree__heading,
+  .blog-tree li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .blog-tree li {
+    position: relative;
+    padding-left: 0.9rem;
+  }
+
+  .blog-tree li::before {
+    position: absolute;
+    top: 0.9rem;
+    left: 0;
+  }
+}
+
 .cv-section {
   margin-top: 2.6rem;
 }

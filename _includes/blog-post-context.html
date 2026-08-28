@@ -1,0 +1,12 @@
+{% assign blog_category = site.data.blog-categories | where: "id", page.blog_category | first %}
+{% if blog_category %}
+  <nav class="blog-breadcrumbs" aria-label="Blog hierarchy">
+    <a href="{{ base_path }}/blog/">Blog</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ base_path }}/blog/#{{ blog_category.id }}">{{ blog_category.title }}</a>
+    {% if page.blog_section %}
+      <span aria-hidden="true">/</span>
+      <span>{{ page.blog_section }}</span>
+    {% endif %}
+  </nav>
+{% endif %}

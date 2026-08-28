@@ -1,0 +1,23 @@
+- id: transformers
+  title: Transformers
+  description: Architectures, attention mechanisms, and multimodal transformer applications.
+
+- id: llm-finetuning-post-training
+  title: LLM Finetuning and Post Training
+  description: Alignment, adaptation, evaluation, and optimization of language models.
+
+- id: llm-from-scratch
+  title: LLM From Scratch
+  description: Building the components of language models from first principles.
+
+- id: pytorch
+  title: PyTorch
+  description: Practical deep learning implementation patterns and tooling.
+
+- id: deep-reinforcement-learning
+  title: Deep Reinforcement Learning
+  description: Policy optimization, value learning, and sequential decision making.
+
+- id: ai-agents
+  title: AI Agents
+  description: Retrieval, tool use, orchestration, and production agent systems.
