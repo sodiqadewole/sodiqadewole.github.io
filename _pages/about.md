@@ -1,13 +1,21 @@
 ---
 permalink: /
-title: "Sodiq Adewole | AI Engineer, Researcher, and Educator"
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-I am an Applied AI Engineer at Microsoft, where I work on building and improving intelligent business applications. My work focuses on evaluating and fine-tuning large and small language models, developing retrieval-augmented generation (RAG) systems, and integrating model capabilities into reliable agent and MCP-based services.
+<div class="about-intro">
+  <div class="about-intro__photo">
+    <img src="{{ '/images/sodiq.jpg' | relative_url }}" alt="Sodiq Adewole" fetchpriority="high">
+  </div>
+  <div class="about-intro__copy">
+    <p class="about-intro__role">AI Engineer, Researcher, and Educator</p>
+    <p>I am an Applied AI Engineer at Microsoft, where I work on building and improving intelligent business applications. My work focuses on evaluating and fine-tuning large and small language models, developing retrieval-augmented generation (RAG) systems, and integrating model capabilities into reliable agent and MCP-based services.</p>
+  </div>
+</div>
 
 I enjoy working across the full AI engineering stack: from data and model experimentation to evaluation, optimization, and production deployment. My broader experience includes natural language processing, multimodal learning, computer vision, distributed data systems, and cloud-native development with tools such as PyTorch, LangChain, Spark, Kubernetes, and Docker.
 
