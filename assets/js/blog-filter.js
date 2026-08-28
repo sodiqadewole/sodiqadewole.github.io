@@ -5,11 +5,35 @@
   if (!filter || categories.length === 0) return;
 
   filter.addEventListener('click', (event) => {
+    const toggle = event.target.closest('.blog-filter__toggle');
+    if (toggle) {
+      const subtopics = document.getElementById(toggle.getAttribute('aria-controls'));
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.setAttribute('aria-label', `${expanded ? 'Expand' : 'Collapse'} ${toggle.closest('.blog-filter__topic').querySelector('[data-filter-category]').textContent.trim()} subtopics`);
+      toggle.textContent = expanded ? '+' : '-';
+      subtopics.hidden = expanded;
+      return;
+    }
+
     const button = event.target.closest('[data-filter-category]');
     if (!button) return;
 
     const categoryId = button.dataset.filterCategory;
     const sectionId = button.dataset.filterSection;
+
+    if (categoryId !== 'all') {
+      const topic = button.closest('.blog-filter__topic');
+      const toggle = topic && topic.querySelector('.blog-filter__toggle');
+      const subtopics = topic && topic.querySelector('.blog-filter__subtopics');
+      if (toggle && subtopics) {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', `Collapse ${button.textContent.trim()} subtopics`);
+        toggle.textContent = '-';
+        subtopics.hidden = false;
+      }
+    }
 
     categories.forEach((category) => {
       const categoryMatches = categoryId === 'all' || category.dataset.blogCategory === categoryId;
