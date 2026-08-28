@@ -13,6 +13,33 @@ tags:
 
 {% include toc %}
 
+## Attention Mechanism
+
+Attention lets a model choose which information matters for its current decision. Rather than compressing an entire input into one fixed representation, it compares a **query** with a collection of **keys** and uses the resulting relevance scores to blend their associated **values**.
+
+For a query $q$ and key-value pairs $(k_j, v_j)$, attention produces a context vector $c$:
+
+$$
+\alpha_j = \operatorname{softmax}(qk_j^\top), \qquad c = \sum_j \alpha_jv_j.
+$$
+
+Each weight $\alpha_j$ says how much information to draw from value $v_j$. A query that closely matches a key receives a larger weight, so the output can focus on the most relevant parts of the input. In encoder-decoder models, the decoder's current state commonly provides the query while encoder states supply keys and values.
+
+<figure class="attention-example" aria-labelledby="attention-example-title">
+  <figcaption id="attention-example-title">Example: resolving a pronoun with attention</figcaption>
+  <p class="attention-example__sentence">The <mark>animal</mark> did not cross the street because <mark class="attention-example__query">it</mark> was too <mark>tired</mark>.</p>
+  <div class="attention-example__query-label">Query: the token <strong>it</strong> asks which earlier token it refers to.</div>
+  <div class="attention-example__weights" aria-label="Attention weights from it to earlier context: animal 62 percent, street 5 percent, because 9 percent, tired 24 percent.">
+    <div class="attention-example__weight"><span>animal</span><b style="--weight: 62%">62%</b></div>
+    <div class="attention-example__weight"><span>street</span><b style="--weight: 5%">5%</b></div>
+    <div class="attention-example__weight"><span>because</span><b style="--weight: 9%">9%</b></div>
+    <div class="attention-example__weight"><span>tired</span><b style="--weight: 24%">24%</b></div>
+  </div>
+  <p class="attention-example__takeaway">The largest weight falls on <strong>animal</strong>, so the contextual representation of <strong>it</strong> carries information that it refers to the animal.</p>
+</figure>
+
+## Self-Attention
+
 Self-attention gives each token a way to gather information from the rest of a sequence. For a token representation $x_i$, the layer creates a query, key, and value:
 
 $$
