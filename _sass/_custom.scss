@@ -245,12 +245,6 @@ a {
   background: rgba(20, 125, 128, 0.06);
 }
 
-.blog-filter__button span {
-  float: right;
-  color: var(--site-teal-dark);
-  font-size: 0.72rem;
-}
-
 .blog-filter__topic-header {
   display: flex;
   align-items: stretch;
@@ -332,14 +326,6 @@ a {
 
 .blog-tree__details[open] .blog-tree__heading h2::before {
   content: "-";
-}
-
-.blog-tree__count {
-  flex: 0 0 auto;
-  color: var(--site-teal-dark);
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .blog-tree__description,

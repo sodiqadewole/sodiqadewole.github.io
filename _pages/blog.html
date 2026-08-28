@@ -22,7 +22,7 @@ wide_layout: true
         {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
         <div class="blog-filter__topic">
           <div class="blog-filter__topic-header">
-            <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}">{{ category.title }} <span>{{ category_posts.size }}</span></button>
+            <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}">{{ category.title }}</button>
             {% if sections.size > 0 %}
               <button class="blog-filter__toggle" type="button" aria-expanded="true" aria-controls="blog-topic-{{ category.id }}" aria-label="Collapse {{ category.title }} subtopics">-</button>
             {% endif %}
@@ -46,7 +46,6 @@ wide_layout: true
         <details class="blog-tree__details" open>
           <summary class="blog-tree__heading">
             <h2>{{ category.title }}</h2>
-            <span class="blog-tree__count">{{ category_posts.size }} {% if category_posts.size == 1 %}post{% else %}posts{% endif %}</span>
           </summary>
           <p class="blog-tree__description">{{ category.description }}</p>
 
