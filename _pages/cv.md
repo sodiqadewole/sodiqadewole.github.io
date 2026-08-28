@@ -9,13 +9,13 @@ redirect_from:
 
 {% include base_path %}
 
-Education
+Education {#education}
 ======
 * Ph.D in Systems and Information Engineering, University of Virginia, USA
   * Research Work: Deep Learning, Video Processing, Intelligent Dialogue Systems
 * B.S. Mechanical Engineering, University of Ibadan
 
-Work experience
+Work experience {#work-experience}
 ======
 * November 2025 - Date: Applied AI Engineer
   * Microsoft M365 Sales Agent Team

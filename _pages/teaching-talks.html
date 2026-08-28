@@ -1,0 +1,18 @@
+---
+layout: archive
+title: "Teaching and talks"
+permalink: /teaching-talks/
+author_profile: true
+---
+
+{% include base_path %}
+
+<h2>Teaching</h2>
+{% for post in site.teaching reversed %}
+  {% include archive-single.html %}
+{% endfor %}
+
+<h2>Talks</h2>
+{% for post in site.talks reversed %}
+  {% include archive-single-talk.html %}
+{% endfor %}

@@ -96,7 +96,8 @@ end.compact
 navigation = YAML.safe_load(File.read(ROOT.join("_data", "navigation.yml")), aliases: true) || {}
 (navigation["main"] || []).each do |item|
   url = item["url"].to_s
-  errors << "_data/navigation.yml: URL '#{url}' does not match a page permalink" unless page_urls.include?(url)
+  page_url = url.split("#", 2).first
+  errors << "_data/navigation.yml: URL '#{url}' does not match a page permalink" unless page_urls.include?(page_url)
 end
 
 puts "Content validation: #{errors.empty? ? 'passed' : 'failed'}"
