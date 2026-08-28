@@ -160,6 +160,63 @@ a {
   }
 }
 
+.cv-section {
+  margin-top: 2.6rem;
+}
+
+.cv-section h2 {
+  margin-bottom: 1.25rem;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--site-rule);
+}
+
+.cv-entry:last-child {
+  border-bottom: 0;
+}
+
+.cv-entry__meta {
+  color: var(--site-teal-dark);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.cv-entry h3,
+.cv-skill-group h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+}
+
+.cv-entry p,
+.cv-skill-group p {
+  margin-bottom: 0.65rem;
+}
+
+.cv-entry__institution {
+  color: var(--site-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.cv-skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.cv-skill-group {
+  padding: 1rem;
+  border-top: 3px solid var(--site-teal);
+  background: rgba(20, 125, 128, 0.045);
+}
+
 .archive__item {
   border-bottom: 1px solid var(--site-rule);
   padding: 1.15rem 0;
@@ -200,6 +257,15 @@ a {
     grid-template-columns: 96px 1fr;
     gap: 1.25rem;
   }
+
+  .cv-entry {
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+  }
+
+  .cv-skills {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 520px) {
@@ -210,6 +276,11 @@ a {
 
   .about-intro__photo img {
     width: 116px;
+  }
+
+  .cv-entry {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }
 
