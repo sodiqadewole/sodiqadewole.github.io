@@ -7,12 +7,25 @@ author_profile: true
 
 {% include base_path %}
 
-<h2>Teaching</h2>
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="teaching-talks-intro">
+  <p class="teaching-talks-intro__eyebrow">Teaching and public scholarship</p>
+  <p>This page brings together my graduate teaching experience, invited talks, and technical presentations.</p>
+</div>
 
-<h2>Talks</h2>
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
-{% endfor %}
+<section class="teaching-talks-section" id="teaching">
+  <h2>Teaching</h2>
+  <div class="teaching-talks-list">
+    {% for post in site.teaching reversed %}
+      {% include archive-single.html %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="teaching-talks-section" id="talks">
+  <h2>Talks and presentations</h2>
+  <div class="teaching-talks-list">
+    {% for post in site.talks reversed %}
+      {% include archive-single-talk.html %}
+    {% endfor %}
+  </div>
+</section>
