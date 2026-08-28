@@ -27,15 +27,31 @@ Each weight $\alpha_j$ says how much information to draw from value $v_j$. A que
 
 <figure class="attention-example" aria-labelledby="attention-example-title">
   <figcaption id="attention-example-title">Example: resolving a pronoun with attention</figcaption>
-  <p class="attention-example__sentence">The <mark>animal</mark> did not cross the street because <mark class="attention-example__query">it</mark> was too <mark>tired</mark>.</p>
+  <p class="attention-example__sentence">After Maya placed the <mark>trophy</mark> beside the <mark>suitcase</mark>, she realized that <mark class="attention-example__query">it</mark> was too <mark>large</mark> to take on the train.</p>
   <div class="attention-example__query-label">Query: the token <strong>it</strong> asks which earlier token it refers to.</div>
-  <div class="attention-example__weights" aria-label="Attention weights from it to earlier context: animal 62 percent, street 5 percent, because 9 percent, tired 24 percent.">
-    <div class="attention-example__weight"><span>animal</span><b style="--weight: 62%">62%</b></div>
-    <div class="attention-example__weight"><span>street</span><b style="--weight: 5%">5%</b></div>
-    <div class="attention-example__weight"><span>because</span><b style="--weight: 9%">9%</b></div>
-    <div class="attention-example__weight"><span>tired</span><b style="--weight: 24%">24%</b></div>
+  <div class="attention-example__weights" aria-label="Illustrative attention weights from it to earlier context: trophy 46 percent, large 22 percent, suitcase 12 percent, take 8 percent, train 5 percent, and remaining context 7 percent.">
+    <div class="attention-example__weight"><span>trophy</span><b style="--weight: 46%">46%</b></div>
+    <div class="attention-example__weight"><span>large</span><b style="--weight: 22%">22%</b></div>
+    <div class="attention-example__weight"><span>suitcase</span><b style="--weight: 12%">12%</b></div>
+    <div class="attention-example__weight"><span>take</span><b style="--weight: 8%">8%</b></div>
+    <div class="attention-example__weight"><span>train</span><b style="--weight: 5%">5%</b></div>
+    <div class="attention-example__weight"><span>other context</span><b style="--weight: 7%">7%</b></div>
   </div>
-  <p class="attention-example__takeaway">The largest weight falls on <strong>animal</strong>, so the contextual representation of <strong>it</strong> carries information that it refers to the animal.</p>
+  <p class="attention-example__takeaway">The largest weight falls on <strong>trophy</strong>, so the contextual representation of <strong>it</strong> carries information that it refers to the trophy. These are illustrative weights, not measurements from a specific trained model.</p>
+</figure>
+
+<figure class="attention-example" aria-labelledby="technical-attention-example-title">
+  <figcaption id="technical-attention-example-title">Example: connecting a conclusion to evidence</figcaption>
+  <p class="attention-example__sentence">When the model reads a long <mark>research paper</mark>, it uses attention to connect the final <mark class="attention-example__query">conclusion</mark> with <mark>evidence</mark> introduced many paragraphs <mark>earlier</mark>.</p>
+  <div class="attention-example__query-label">Query: the token <strong>conclusion</strong> searches the preceding context for the information that supports it.</div>
+  <div class="attention-example__weights" aria-label="Illustrative attention weights from conclusion to earlier context: evidence 41 percent, research paper 20 percent, introduced 16 percent, earlier 13 percent, and remaining context 10 percent.">
+    <div class="attention-example__weight"><span>evidence</span><b style="--weight: 41%">41%</b></div>
+    <div class="attention-example__weight"><span>research paper</span><b style="--weight: 20%">20%</b></div>
+    <div class="attention-example__weight"><span>introduced</span><b style="--weight: 16%">16%</b></div>
+    <div class="attention-example__weight"><span>earlier</span><b style="--weight: 13%">13%</b></div>
+    <div class="attention-example__weight"><span>other context</span><b style="--weight: 10%">10%</b></div>
+  </div>
+  <p class="attention-example__takeaway">A later token can pull supporting signals from much earlier context, which is one reason attention is useful for long documents and multi-step reasoning.</p>
 </figure>
 
 ## Self-Attention
