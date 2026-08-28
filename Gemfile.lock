@@ -278,14 +278,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
-  connection_pool (= 2.5.0)
-  github-pages
-  jekyll
-  jekyll-feed
-  jekyll-redirect-from
-  jekyll-sitemap
-  jemoji
-  webrick (~> 1.8)
+  github-pages (~> 232)
 
 BUNDLED WITH
    2.4.20
