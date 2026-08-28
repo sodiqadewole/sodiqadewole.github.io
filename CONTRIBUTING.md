@@ -1,8 +1,28 @@
-Contributions are welcome! 
+# Contributing
 
-Please add issues and make pull requests. There are no stupid questions. All ideas are welcome. This is a volunteer project. Be excellent to each other.
+Thanks for your interest in improving this site.
 
-Bug reports and feature requests to the template  should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+## How to contribute
 
-Fork from master and go from there. Remember that this repository is intended to remain a generic, ready-to-fork template that demonstrates the features of academicpages.
+1. Open an issue describing the bug or improvement.
+2. Create a branch from `main` (or your active default branch).
+3. Make focused changes with clear commit messages.
+4. Open a pull request with:
+	- what changed
+	- why it changed
+	- screenshots (for visual updates), if applicable
+
+## Local validation before PR
+
+- Ensure JavaScript assets build successfully (`npm run build:js`).
+- Ensure the Jekyll site builds/serves (`bundle exec jekyll serve`).
+- Avoid committing generated artifacts (`_site/`, `.sass-cache/`, `.bundle/`, `vendor/bundle/`).
+
+## Content conventions
+
+- Add pages under `_pages/`.
+- Add posts under `_posts/` using date-prefixed filenames.
+- Add collection entries to their matching collection folder (`_publications/`, `_talks/`, `_teaching/`, `_portfolio/`).
+
+Please keep PRs scoped and easy to review.
 
