@@ -3,6 +3,7 @@ layout: archive
 title: "Blog"
 permalink: /blog/
 author_profile: true
+wide_layout: true
 ---
 
 {% include base_path %}
@@ -11,48 +12,77 @@ author_profile: true
   <p>Notes and practical explorations in machine learning systems, language models, and applied AI.</p>
 </div>
 
-<div class="blog-tree">
-  {% for category in site.data.blog-categories %}
-    {% assign category_posts = site.posts | where: "blog_category", category.id %}
-    <section class="blog-tree__category" id="{{ category.id }}">
-      <div class="blog-tree__heading">
-        <h2>{{ category.title }}</h2>
-        <span class="blog-tree__count">{{ category_posts.size }} {% if category_posts.size == 1 %}post{% else %}posts{% endif %}</span>
-      </div>
-      <p class="blog-tree__description">{{ category.description }}</p>
+<div class="blog-browser">
+  <nav class="blog-filter" aria-label="Filter blog posts">
+    <p class="blog-filter__title">Browse topics</p>
+    <button class="blog-filter__button is-active" type="button" data-filter-category="all">All topics</button>
+    {% for category in site.data.blog-categories %}
+      {% assign category_posts = site.posts | where: "blog_category", category.id %}
+      <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}">{{ category.title }} <span>{{ category_posts.size }}</span></button>
+      {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
+      {% for section in sections %}
+        <button class="blog-filter__subtopic" type="button" data-filter-category="{{ category.id }}" data-filter-section="{{ section | slugify }}">{{ section }}</button>
+      {% endfor %}
+    {% endfor %}
+  </nav>
 
-      {% if category_posts.size > 0 %}
-        {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
-        {% for section in sections %}
-          <div class="blog-tree__branch">
-            <h3>{{ section }}</h3>
-            <ul>
-              {% for post in category_posts %}
-                {% if post.blog_section == section %}
-                  <li>
-                    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-                    <span>{{ post.date | date: "%B %-d, %Y" }}</span>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
-        {% endfor %}
+  <div class="blog-tree">
+    {% for category in site.data.blog-categories %}
+      {% assign category_posts = site.posts | where: "blog_category", category.id %}
+      <section class="blog-tree__category" id="{{ category.id }}" data-blog-category="{{ category.id }}">
+        <details class="blog-tree__details" open>
+          <summary class="blog-tree__heading">
+            <h2>{{ category.title }}</h2>
+            <span class="blog-tree__count">{{ category_posts.size }} {% if category_posts.size == 1 %}post{% else %}posts{% endif %}</span>
+          </summary>
+          <p class="blog-tree__description">{{ category.description }}</p>
 
-        {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
-        {% if ungrouped_posts.size > 0 %}
-          <ul class="blog-tree__posts">
-            {% for post in ungrouped_posts %}
-              <li>
-                <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-                <span>{{ post.date | date: "%B %-d, %Y" }}</span>
-              </li>
+          {% if category_posts.size > 0 %}
+            {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
+            {% for section in sections %}
+              <div class="blog-tree__branch" data-blog-section="{{ section | slugify }}">
+                <h3>{{ section }}</h3>
+                <div class="blog-card-grid">
+                  {% for post in category_posts %}
+                    {% if post.blog_section == section %}
+                      <a class="blog-card" href="{{ base_path }}{{ post.url }}">
+                        <span class="blog-card__eyebrow">{{ category.title }}</span>
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 155 }}</p>
+                        <span class="blog-card__meta">
+                          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                          {% if post.read_time %}<span>{{ post.content | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read</span>{% endif %}
+                        </span>
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
             {% endfor %}
-          </ul>
-        {% endif %}
-      {% else %}
-        <p class="blog-tree__empty">New articles coming soon.</p>
-      {% endif %}
-    </section>
-  {% endfor %}
+
+            {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
+            {% if ungrouped_posts.size > 0 %}
+              <div class="blog-card-grid blog-tree__posts">
+                {% for post in ungrouped_posts %}
+                  <a class="blog-card" href="{{ base_path }}{{ post.url }}">
+                    <span class="blog-card__eyebrow">{{ category.title }}</span>
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 155 }}</p>
+                    <span class="blog-card__meta">
+                      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                      {% if post.read_time %}<span>{{ post.content | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read</span>{% endif %}
+                    </span>
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% else %}
+            <p class="blog-tree__empty">New articles coming soon.</p>
+          {% endif %}
+        </details>
+      </section>
+    {% endfor %}
+  </div>
 </div>
+
+<script src="{{ base_path }}/assets/js/blog-filter.js"></script>

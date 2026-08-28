@@ -12,7 +12,7 @@ layout: default
   {% endunless %}
 {% endif %}
 
-<div id="main" role="main">
+<div id="main" class="{% if page.wide_layout %}main--wide{% endif %}" role="main">
   {% include sidebar.html %}
 
   <div class="archive">
