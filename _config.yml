@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Sodiq Adewole | AI Engineer, Researcher, and Educator" # Update this with the title of your site, this is the default if not overridden by a page
+title                    : "Sodiq Adewole" # Update this with the title of your site, this is the default if not overridden by a page
 title_separator          : "-"
 name                     : &name "Sodiq Adewole"
 description              : &description "Sodiq Adewole's portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
