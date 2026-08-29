@@ -170,6 +170,25 @@ a {
   }
 }
 
+.page--blog-post {
+  .page__title {
+    font-size: clamp(1.85rem, 4vw, 2.65rem);
+  }
+
+  .page__content {
+    font-size: 0.96rem;
+    line-height: 1.68;
+
+    h2 {
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      font-size: 1.18rem;
+    }
+  }
+}
+
 .blog-breadcrumbs {
   display: flex;
   flex-wrap: wrap;
@@ -184,13 +203,13 @@ a {
   max-width: 44rem;
   margin: 0 0 2.5rem 15rem;
   color: var(--site-muted);
-  font-size: 1.06rem;
+  font-size: 0.96rem;
 }
 
 #main.main--wide .archive > .page__title {
   max-width: 44rem;
   margin-left: 15rem;
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-size: clamp(1.65rem, 2.5vw, 2.2rem);
 }
 
 .blog-browser {
@@ -314,7 +333,7 @@ a {
 .archive .blog-tree__heading h2 {
   margin: 0;
   color: var(--site-ink);
-  font-size: 1.5rem;
+  font-size: 1.32rem;
 }
 
 .archive .blog-tree__heading h2::before {
@@ -332,6 +351,7 @@ a {
 .blog-tree__empty {
   margin: 0.35rem 0 0;
   color: var(--site-muted);
+  font-size: 0.9rem;
 }
 
 .blog-tree__branch {
@@ -342,7 +362,7 @@ a {
   margin: 0 0 0.75rem;
   color: var(--site-teal-dark);
   font-family: "DM Sans", "Segoe UI", sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
 }
 
 .blog-card-grid {
@@ -384,14 +404,14 @@ a {
 .blog-card h4 {
   margin: 0;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   line-height: 1.25;
 }
 
 .blog-card p {
   margin: 0.65rem 0 1rem;
   color: var(--site-muted);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   line-height: 1.55;
 }
 
