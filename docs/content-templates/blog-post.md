@@ -5,12 +5,11 @@ permalink: /blog/category-slug/section-slug/post-slug/
 blog_category: transformers
 blog_section: Attention
 read_time: true
-toc: true
 tags:
   - transformers
 ---
 
-Write the post in Markdown. Use headings to populate the table of contents.
+Write the post in Markdown. Use headings to structure the article.
 
 ## Introduction
 

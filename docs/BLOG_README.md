@@ -39,9 +39,9 @@ tags:
 
 4. Write the article in Markdown.
 
-The blog post layout adds the table of contents automatically. Do not add
-`{% include toc %}` to the post body unless you also set `toc: false` and are
-intentionally handling TOC placement yourself.
+Blog posts do not render a table of contents by default. Use headings to structure
+the article, but do not add `{% include toc %}` to the post body unless you are
+intentionally opting into a custom TOC for a specific post.
 
 Use normal Markdown for prose, headings, links, images, tables, and fenced code
 blocks. MathJax is enabled, so inline math can use `$x_i$` and display math can
