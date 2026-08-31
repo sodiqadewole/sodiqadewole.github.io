@@ -46,6 +46,9 @@ layout: default
 
       {% if page.collection == 'posts' %}
         {% include blog-post-context.html %}
+        {% unless page.toc == false %}
+          {% include toc %}
+        {% endunless %}
       {% endif %}
 
       <section class="page__content" itemprop="text">
@@ -87,7 +90,7 @@ layout: default
         {% include page__taxonomy.html %}
       </footer>
 
-      {% if page.share %}{% include social-share.html %}{% endif %}
+      {% if page.share and page.collection != 'posts' %}{% include social-share.html %}{% endif %}
 
       {% include post_pagination.html %}
     </div>

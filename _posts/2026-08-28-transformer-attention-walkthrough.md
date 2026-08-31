@@ -11,8 +11,6 @@ tags:
   - LLM From Scratch
 ---
 
-{% include toc %}
-
 ## Attention Mechanism
 
 Attention lets a model choose which information matters for its current decision. Rather than compressing an entire input into one fixed representation, it compares a **query** with a collection of **keys** and uses the resulting relevance scores to blend their associated **values**.

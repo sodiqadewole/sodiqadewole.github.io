@@ -288,6 +288,60 @@ a {
   font-weight: 600;
 }
 
+.page--blog-post .sidebar__right {
+  float: none;
+  width: 100%;
+  margin: 0 0 1.6rem;
+}
+
+.page--blog-post .toc {
+  padding: 0.85rem 1rem;
+  border-top: 2px solid var(--site-teal);
+  background: rgba(20, 125, 128, 0.045);
+  box-shadow: none;
+}
+
+.page--blog-post .toc .nav__title {
+  margin: 0 0 0.45rem;
+  color: var(--site-teal-dark);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.page--blog-post .toc__menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem 1rem;
+}
+
+.page--blog-post .toc__menu a {
+  padding: 0.12rem 0;
+  color: var(--site-muted);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.page--blog-post .toc__menu a:hover {
+  color: var(--site-teal-dark);
+}
+
+.page--blog-post .toc__menu li ul > li a {
+  padding-left: 0.7rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 640px) {
+  .page--blog-post .toc__menu {
+    grid-template-columns: 1fr;
+  }
+}
+
 .blog-index-intro {
   max-width: 44rem;
   margin: 0 0 2.5rem 15rem;

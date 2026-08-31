@@ -37,13 +37,11 @@ tags:
 ---
 ```
 
-4. Add the table of contents include below the front matter:
+4. Write the article in Markdown.
 
-```liquid
-{% include toc %}
-```
-
-5. Write the article in Markdown.
+The blog post layout adds the table of contents automatically. Do not add
+`{% include toc %}` to the post body unless you also set `toc: false` and are
+intentionally handling TOC placement yourself.
 
 Use normal Markdown for prose, headings, links, images, tables, and fenced code
 blocks. MathJax is enabled, so inline math can use `$x_i$` and display math can

@@ -10,8 +10,6 @@ tags:
   - transformers
 ---
 
-{% include toc %}
-
 Write the post in Markdown. Use headings to populate the table of contents.
 
 ## Introduction

@@ -13,8 +13,6 @@ tags:
   - Preference Optimization
 ---
 
-{% include toc %}
-
 ![DPO loss diagram](/images/blog/dpo-loss-qwen.png)
 
 The Direct Preference Optimization (DPO) loss compares how strongly a trainable model prefers a **chosen response** over a **rejected response**, relative to the same preference under a frozen reference model:
