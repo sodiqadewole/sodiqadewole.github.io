@@ -187,6 +187,95 @@ a {
       font-size: 1.18rem;
     }
   }
+
+  .language-python.highlighter-rouge {
+    border-color: #24364a;
+    background: #101827;
+    box-shadow: 0 12px 26px rgba(16, 24, 39, 0.18);
+
+    &:before {
+      color: #9fb0c6;
+      background: #172235;
+    }
+
+    .highlight {
+      color: #d7e2f0;
+      background: transparent;
+    }
+
+    pre,
+    code {
+      color: #d7e2f0;
+      background: transparent;
+    }
+
+    .c,
+    .c1,
+    .cm,
+    .cs {
+      color: #7f90a8;
+      font-style: italic;
+    }
+
+    .k,
+    .kc,
+    .kd,
+    .kn,
+    .kp,
+    .kr,
+    .ow {
+      color: #ffb86c;
+    }
+
+    .s,
+    .s1,
+    .s2,
+    .sb,
+    .sc,
+    .sd,
+    .sh,
+    .si,
+    .sx {
+      color: #8bd5ca;
+    }
+
+    .m,
+    .mf,
+    .mh,
+    .mi,
+    .mo,
+    .il {
+      color: #f8c77e;
+    }
+
+    .n,
+    .na,
+    .nb,
+    .nc,
+    .nd,
+    .ne,
+    .nf,
+    .nn,
+    .no,
+    .nt,
+    .nv,
+    .nx,
+    .vc,
+    .vg,
+    .vi {
+      color: #d7e2f0;
+    }
+
+    .nf,
+    .fm {
+      color: #82aaff;
+    }
+
+    .o,
+    .p {
+      color: #b8c7dc;
+    }
+  }
 }
 
 .blog-breadcrumbs {
