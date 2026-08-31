@@ -1,3 +1,7 @@
+- id: llm-from-scratch
+  title: LLM From Scratch
+  description: Building the components of language models from first principles.
+  
 - id: transformers
   title: Transformers
   description: Architectures, attention mechanisms, and multimodal transformer applications.
@@ -5,10 +9,6 @@
 - id: llm-finetuning-post-training
   title: LLM Finetuning and Post Training
   description: Alignment, adaptation, evaluation, and optimization of language models.
-
-- id: llm-from-scratch
-  title: LLM From Scratch
-  description: Building the components of language models from first principles.
 
 - id: pytorch
   title: PyTorch

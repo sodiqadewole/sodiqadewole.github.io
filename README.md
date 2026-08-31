@@ -69,7 +69,9 @@ Use `docker compose up --build` in the repository root and open `http://localhos
 ## Add content
 
 Use the templates in [`docs/content-templates/`](docs/content-templates/) and
-follow [`docs/CONTENT_GUIDE.md`](docs/CONTENT_GUIDE.md). The main content types
+follow [`docs/CONTENT_GUIDE.md`](docs/CONTENT_GUIDE.md). For blog-specific
+instructions, including adding posts and categories, see
+[`docs/BLOG_README.md`](docs/BLOG_README.md). The main content types
 are:
 
 - Blog posts in `_posts/`
