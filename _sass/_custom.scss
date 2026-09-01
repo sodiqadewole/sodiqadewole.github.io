@@ -363,6 +363,19 @@ a {
   position: relative;
 }
 
+.blog-browser--post {
+  position: fixed;
+  top: 7rem;
+  left: max(1rem, calc((100vw - 1280px) / 2 + 1rem));
+  width: 12rem;
+  z-index: 20;
+}
+
+.blog-browser--post .blog-filter {
+  position: static;
+  left: auto;
+}
+
 .blog-filter {
   position: absolute;
   top: 0;
@@ -388,6 +401,7 @@ a {
 
 .blog-filter__button,
 .blog-filter__subtopic {
+  display: block;
   width: 100%;
   padding: 0.45rem 0.55rem;
   color: var(--site-muted);
@@ -471,6 +485,7 @@ a {
   padding-left: 1.1rem;
   font-size: 0.75rem;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .blog-tree {
@@ -612,6 +627,16 @@ a {
 @media (max-width: 700px) {
   #main.main--wide .archive > .page__title {
     margin-left: 0;
+  }
+
+  .blog-browser--post {
+    position: static;
+    width: auto;
+    margin: 0 0 1.5rem;
+  }
+
+  .blog-browser--post .blog-filter {
+    left: auto;
   }
 
   .blog-index-intro {

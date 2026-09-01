@@ -2,7 +2,7 @@
   const filter = document.querySelector('.blog-filter');
   const categories = Array.from(document.querySelectorAll('[data-blog-category]'));
 
-  if (!filter || categories.length === 0) return;
+  if (!filter) return;
 
   const getTopicLabel = (topic) => topic.querySelector('[data-filter-label]').dataset.filterLabel;
 
@@ -21,6 +21,8 @@
 
     const button = event.target.closest('[data-filter-category]');
     if (!button) return;
+
+    if (categories.length === 0) return;
 
     const categoryId = button.dataset.filterCategory;
     const sectionId = button.dataset.filterSection;

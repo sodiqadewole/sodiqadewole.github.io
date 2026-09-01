@@ -1,0 +1,46 @@
+{% include base_path %}
+
+<nav class="blog-filter{% if include.mode == 'post' %} blog-filter--post{% endif %}" aria-label="Browse blog topics">
+  <p class="blog-filter__title">Browse topics</p>
+  <div class="blog-filter__content">
+    {% if include.mode == 'post' %}
+      <a class="blog-filter__button" href="{{ base_path }}/blog/">All topics</a>
+    {% else %}
+      <button class="blog-filter__button is-active" type="button" data-filter-category="all">All topics</button>
+    {% endif %}
+
+    {% for category in site.data.blog-categories %}
+      {% assign category_posts = site.posts | where: "blog_category", category.id %}
+      {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
+      <div class="blog-filter__topic">
+        <div class="blog-filter__topic-header">
+          {% if include.mode == 'post' %}
+            <a class="blog-filter__button{% if page.blog_category == category.id %} is-active{% endif %}" href="{{ base_path }}/blog/#{{ category.id }}" data-filter-category="{{ category.id }}" data-filter-label="{{ category.title }}">
+              <span>{{ category.title }}</span>
+              <span class="blog-filter__count">{{ category_posts.size }}</span>
+            </a>
+          {% else %}
+            <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}" data-filter-label="{{ category.title }}">
+              <span>{{ category.title }}</span>
+              <span class="blog-filter__count">{{ category_posts.size }}</span>
+            </button>
+          {% endif %}
+          {% if sections.size > 0 %}
+            <button class="blog-filter__toggle" type="button" aria-expanded="false" aria-controls="blog-topic-{{ category.id }}" aria-label="Expand {{ category.title }} subtopics">+</button>
+          {% endif %}
+        </div>
+        {% if sections.size > 0 %}
+          <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}" hidden>
+            {% for section in sections %}
+              {% if include.mode == 'post' %}
+                <a class="blog-filter__subtopic" href="{{ base_path }}/blog/#{{ category.id }}" data-filter-category="{{ category.id }}" data-filter-section="{{ section | slugify }}">{{ section }}</a>
+              {% else %}
+                <button class="blog-filter__subtopic" type="button" data-filter-category="{{ category.id }}" data-filter-section="{{ section | slugify }}">{{ section }}</button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</nav>
