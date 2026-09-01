@@ -44,7 +44,7 @@
       const subtopics = topic && topic.querySelector('.blog-filter__subtopics');
       if (toggle && subtopics) {
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', `Collapse ${getTopicLabel(topic)} subtopics`);
+        toggle.setAttribute('aria-label', `Collapse ${getTopicLabel(topic)} ${toggle.dataset.toggleLabel || 'subtopics'}`);
         toggle.textContent = '-';
         subtopics.hidden = false;
       }

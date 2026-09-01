@@ -675,14 +675,6 @@ a {
     grid-column: 1 / -1;
   }
 
-  .blog-filter__subtopic {
-    display: none;
-  }
-
-  .blog-filter--post .blog-filter__subtopic {
-    display: block;
-  }
-
   .blog-card-grid {
     grid-template-columns: 1fr;
   }

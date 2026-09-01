@@ -11,7 +11,6 @@
 
     {% for category in site.data.blog-categories %}
       {% assign category_posts = site.posts | where: "blog_category", category.id %}
-      {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
       <div class="blog-filter__topic">
         <div class="blog-filter__topic-header">
           {% if include.mode == 'post' %}
@@ -25,22 +24,14 @@
               <span class="blog-filter__count">{{ category_posts.size }}</span>
             </button>
           {% endif %}
-          {% if include.mode == 'post' and category_posts.size > 0 %}
+          {% if category_posts.size > 0 %}
             <button class="blog-filter__toggle" type="button" aria-expanded="{% if page.blog_category == category.id %}true{% else %}false{% endif %}" aria-controls="blog-topic-{{ category.id }}" aria-label="{% if page.blog_category == category.id %}Collapse{% else %}Expand{% endif %} {{ category.title }} articles" data-toggle-label="articles">{% if page.blog_category == category.id %}-{% else %}+{% endif %}</button>
-          {% elsif sections.size > 0 %}
-            <button class="blog-filter__toggle" type="button" aria-expanded="false" aria-controls="blog-topic-{{ category.id }}" aria-label="Expand {{ category.title }} subtopics" data-toggle-label="subtopics">+</button>
           {% endif %}
         </div>
-        {% if include.mode == 'post' and category_posts.size > 0 %}
+        {% if category_posts.size > 0 %}
           <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}"{% unless page.blog_category == category.id %} hidden{% endunless %}>
             {% for post in category_posts %}
               <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-            {% endfor %}
-          </div>
-        {% elsif sections.size > 0 %}
-          <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}" hidden>
-            {% for section in sections %}
-              <button class="blog-filter__subtopic" type="button" data-filter-category="{{ category.id }}" data-filter-section="{{ section | slugify }}">{{ section }}</button>
             {% endfor %}
           </div>
         {% endif %}
