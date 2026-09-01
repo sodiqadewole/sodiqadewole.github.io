@@ -12,7 +12,22 @@ tags:
   - Large Language Model
 ---
 
-This post covers implementation Retrieval Augmented Generation on a Local GPU with Phi-3-mini-4k-instruct model and LlamaCpp from langchain.
+Retrieval-Augmented Generation (RAG) improves a language model's answers by giving it retrieved context at inference time. Instead of asking the model to answer only from its parameters, we first retrieve relevant text from a document store and pass that text into the prompt.
+
+In this post, I build a local RAG workflow with Phi-3-mini-4k-instruct, LlamaCpp, LangChain, Hugging Face embeddings, and a FAISS vector store. The example uses content about large language models, retrieves relevant chunks, and asks Phi-3 to answer from the retrieved context.
+
+What this post covers:
+
+- Downloading a local GGUF Phi-3-mini model.
+- Loading the model with LangChain's LlamaCpp wrapper.
+- Creating sentence embeddings with `thenlper/gte-small`.
+- Building a local FAISS vector database.
+- Checking retrieval quality with similarity search.
+- Connecting the retriever to a `RetrievalQA` chain.
+
+### Downloading the Local Model
+
+The first step is to download the GGUF model file. This makes the generation model available locally instead of calling a hosted API.
 
 ``` python
 !wget https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/resolve/main/Phi-3-mini-4k-instruct-fp16.gguf
@@ -30,6 +45,9 @@ This post covers implementation Retrieval Augmented Generation on a Local GPU wi
     2026-03-28 23:02:48 (33.8 MB/s) - ‘Phi-3-mini-4k-instruct-fp16.gguf’ saved [7643295904/7643295904]
 
 #### Load the generation model
+
+Here, LlamaCpp loads the downloaded model and places the available layers on the GPU. The context window and maximum generation length are kept modest for a local experiment.
+
 ``` python
 from langchain import LlamaCpp
 
@@ -45,13 +63,16 @@ llm = LlamaCpp(
     )
 ```
 #### Load the Embedding Model
+
+The embedding model converts each text chunk into a vector. Those vectors make semantic search possible because similar meanings should land near each other in embedding space.
+
 ``` python
 from langchain.embeddings import HuggingFaceEmbeddings
 
 embedding_model = HuggingFaceEmbeddings(model_name="thenlper/gte-small")
 ```
 
-Let\'s set up vector database using the embedding model
+Let's prepare the source text and set up the vector database using the embedding model.
 
 ``` python
 import wikipedia
@@ -85,7 +106,7 @@ from langchain.vectorstores import FAISS
 vector_store = FAISS.from_texts(sentences, embedding_model)
 ```
 
-Check some output of similarity search to a query
+Before building the full RAG chain, it helps to inspect the raw retrieval output for a simple query.
 
 ``` python
 vector_store.similarity_search("What are large language models?", k=3)
@@ -95,7 +116,9 @@ vector_store.similarity_search("What are large language models?", k=3)
      Document(page_content='The tendency towards larger models is visible in the list of large language models'),
      Document(page_content='"Baby steps in evaluating the capacities of large language models"')]
 
-RAG Prompt
+### Building the RAG Prompt and Chain
+
+The prompt template inserts retrieved context above the user question. The `RetrievalQA` chain then handles retrieval, prompt construction, and generation.
 
 ``` python
 from langchain import PromptTemplate
@@ -134,5 +157,9 @@ rag.invoke("language model architecture")
 
     {'query': 'language model architecture',
      'result': ' The architecture used by large language models (LLMs) is based on the transformer design. This marks an evolution from previous statistical and recurrent neural network approaches, offering enhanced capabilities for handling complex natural language processing tasks due to its effective scaling and ability to process sequential data.'}
-``` python
-```
+
+The answer correctly uses the retrieved context to connect large language models with transformer architecture. For a stronger production workflow, the next step would be to improve chunking, add source citations, tune `k`, and evaluate answers against a small set of known questions.
+
+### Takeaways
+
+This local RAG pipeline shows the core pieces: a generator, an embedding model, a vector store, and a prompt that binds retrieved evidence to the question. Even with a compact setup, the model can answer more grounded questions when the right context is retrieved first.

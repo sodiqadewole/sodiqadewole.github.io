@@ -12,7 +12,22 @@ tags:
   - Vision Transformer
 ---
 
-This post covers implementation of a simple multimodal image search using vision transformer.
+Multimodal search works by placing different kinds of data into a shared embedding space. With CLIP, an image and a caption can both be represented as 512-dimensional vectors, which means we can compare text and image meaning with cosine similarity.
+
+In this post, I build a small image-text similarity example using a CLIP vision transformer. The walkthrough loads an image, tokenizes a caption, generates text and image embeddings, normalizes both vectors, and computes a similarity score.
+
+What this post covers:
+
+- Loading an image and writing a descriptive caption.
+- Loading CLIP's tokenizer, processor, and vision-language model.
+- Inspecting tokenized text inputs.
+- Creating text and image embeddings.
+- Visualizing the processed image tensor.
+- Computing cosine similarity between image and text embeddings.
+
+### Loading an Image and Caption
+
+The example starts with a single image and one caption describing the scene. In a full search system, this same process would be repeated across a collection of images and candidate text queries.
 
 ``` python
 from urllib.request import urlopen
@@ -28,6 +43,10 @@ image.show()
 
 caption = ['Intense tiger hunt, Bengal tiger capturing prey in a dramatic water scene']
 ```
+
+### Loading CLIP
+
+CLIP provides both the text encoder and the image encoder. The tokenizer prepares text for the text tower, while the processor prepares images for the vision tower.
 
 ``` python
 from transformers import CLIPTokenizerFast, CLIPProcessor, CLIPModel
@@ -47,6 +66,9 @@ processor = CLIPProcessor.from_pretrained(model_name)
 model = CLIPModel.from_pretrained(model_name)
 ```
 
+### Tokenizing the Caption
+
+The caption is converted into token IDs and an attention mask. These tensors are the input to CLIP's text encoder.
 
 ``` python
 # Tokenize the caption
@@ -81,6 +103,10 @@ tokenizer.convert_ids_to_tokens(inputs.input_ids[0])
      '<|endoftext|>']
 
 which gives the following
+
+### Creating Text and Image Embeddings
+
+The text encoder returns a 512-dimensional embedding for the caption. The image processor resizes and normalizes the image into the shape expected by CLIP.
 
 ``` python
 # Create a text embedding for the caption
@@ -123,6 +149,8 @@ plt.axis('off')
 
 ![](78f963b66267556b3c3aea725877636f169de1f5.png)
 
+After preprocessing, the image encoder maps the image into the same embedding dimension as the caption.
+
 ``` python
 image_embedding = model.get_image_features(image_inputs) # Get the image features (embedding) from the CLIP model for the given input
 image_embedding.shape # (1, 512) - the CLIP model produces a 512
@@ -135,6 +163,10 @@ image_embedding.shape # (1, 512) - the CLIP model produces a 512
 The shape of the resulting image embedding is same as the shape of the
 text embedding. This allows us to compare the emebedding to see if they
 are similar.
+
+### Comparing Text and Image Similarity
+
+After normalization, the dot product between the embeddings is equivalent to cosine similarity. A higher score means the image and caption are closer in CLIP's shared semantic space.
 
 
 ``` python
@@ -155,5 +187,8 @@ print(f"Cosine similarity score between the text and image embeddings: {similari
 
     Cosine similarity score between the text and image embeddings: 0.3434
 
-``` python
-```
+The score is a simple sanity check that the pipeline is working. To turn this into image search, encode many images once, store their normalized embeddings, then compare a text query embedding against every image embedding and rank the results.
+
+### Takeaways
+
+This example shows the smallest useful unit of multimodal retrieval: one text embedding, one image embedding, and a similarity score. The same idea scales to larger image collections, where CLIP embeddings can power text-to-image search, image-to-image search, and lightweight retrieval prototypes.

@@ -10,13 +10,30 @@ tags:
   - Language Model
 ---
 
-This post covers implementation of advance search optimization using dense retrieval.
+Keyword search is useful, but it can miss relevant passages when the query and document use different wording. Dense retrieval improves this by encoding text into semantic vectors and ranking passages by embedding similarity rather than exact token overlap.
+
+In this post, I implement a dense retrieval search function over text about large language models. The workflow extracts sentences from a source document, encodes them with a SentenceTransformer model, embeds the user query, and returns the most semantically similar passages.
+
+What this post covers:
+
+- Loading a document from Wikipedia.
+- Splitting the document into sentence-level passages.
+- Encoding passages with `all-mpnet-base-v2`.
+- Computing cosine similarity between a query and all passages.
+- Returning the top-k most relevant results.
+- Inspecting what dense retrieval gets right and where ranking can still be improved.
 
 ### Implementing Dense Retrieval for Search Query
+
+The first step installs and imports the Wikipedia helper package so we can fetch a source document for the search index.
 
 ``` python
 !pip install wikipedia
 ```
+
+### Loading and Chunking Source Text
+
+Here, the article text is split into sentence-like chunks. Each chunk becomes a candidate passage that can be retrieved later.
 
 ``` python
 import wikipedia
@@ -101,6 +118,8 @@ len(sentences)
 
 # Encode Text into Embeddings
 
+The sentence transformer maps every passage into a dense vector. In this run, the document produced 433 sentence embeddings with 768 dimensions each.
+
 ``` python
 from sentence_transformers import SentenceTransformer
 
@@ -122,7 +141,9 @@ embeddings[0].shape
 
     (768,)
 
-Build a query search function to return similarities and top_k similar text
+### Building the Dense Search Function
+
+The search function embeds a query, compares it against every passage embedding with cosine similarity, and returns the top-ranked passages.
 
 ``` python
 import torch
@@ -173,4 +194,10 @@ for i, result in enumerate(results):
 
 Note: Every response contains the word \'language models\' or large
 \'language models\'
+
+The retrieved results are semantically related to the query, but the top result is not the most direct architecture answer. This is a useful reminder that dense retrieval is powerful but still benefits from better chunking, metadata filtering, reranking, and evaluation queries.
+
+### Takeaways
+
+Dense retrieval changes search from exact keyword matching to semantic matching. The core workflow is simple: chunk text, embed chunks, embed a query, compare vectors, and return the nearest passages. For production search, this same pattern can be improved with a vector database, hybrid sparse/dense retrieval, reranking, and source-aware result formatting.
 

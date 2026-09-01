@@ -12,8 +12,18 @@ tags:
   - TinyLlama
 ---
 
-In this post, I show fine-tuning of LLM model (Tiny Llama) using Direct Preference Optimization (DPO).
+Direct Preference Optimization (DPO) is a practical way to align a language model with preference data without training a separate reward model. Instead of asking the model only to imitate preferred responses, DPO trains it to assign higher likelihood to a chosen answer than to a rejected answer for the same prompt.
 
+In this post, I fine-tune TinyLlama with DPO using an instruction-preference dataset. The walkthrough covers how to format preference pairs, prepare a quantized model for LoRA training, configure the DPO trainer, merge the resulting adapters, and run a quick generation test with the aligned model.
+
+What this post covers:
+
+- Preparing prompt, chosen, and rejected response fields for DPO.
+- Loading TinyLlama with 4-bit quantization for memory-efficient training.
+- Applying LoRA adapters to the attention and feed-forward projection layers.
+- Running DPO training with TRL.
+- Merging the SFT and DPO adapters into a usable model.
+- Testing the final model with a short generation prompt.
 
 First, we format alignment data by combining the system and user instructions into a single prompt.
 
@@ -59,6 +69,12 @@ dpo_dataset #.save_to_disk("formatted_dpo_dataset")
         num_rows: 5922
     })
 
+The formatted dataset now has the three fields DPO expects: a shared `prompt`, a preferred `chosen` response, and a lower-ranked `rejected` response.
+
+### Loading the Base Model and Tokenizer
+
+Next, we load TinyLlama with 4-bit quantization. Quantization keeps memory use lower, while LoRA lets us train a small number of adapter weights instead of updating the full model.
+
 ``` python
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -94,6 +110,10 @@ tokenizer.pad_token = "<PAD>"  # Set the pad token
 tokenizer.padding_side = "left"  # Pad on the left side
 ```
 
+### Configuring LoRA for DPO
+
+The LoRA configuration controls the number of trainable adapter parameters and which modules receive adapter layers. Here, the attention projections and MLP projection layers are targeted so the preference optimization can modify the model's response style without full fine-tuning.
+
 ``` python
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
@@ -114,6 +134,10 @@ model = prepare_model_for_kbit_training(model)
 model = get_peft_model(model, peft_config)
 ```
 
+### Setting DPO Training Arguments
+
+The DPO configuration sets the optimizer, learning rate schedule, batch size, gradient accumulation, and maximum number of steps. The short `max_steps=200` run makes this a compact experiment rather than a full production training job.
+
 ``` python
 from trl import DPOConfig
 
@@ -133,6 +157,10 @@ training_args = DPOConfig(
     warmup_ratio=0.1,  # Warmup ratio for learning rate scheduler
 )
 ```
+
+### Training with DPO
+
+The trainer receives the model, preference dataset, tokenizer, LoRA configuration, and sequence-length limits. The `beta` value controls how strongly the model is pushed to prefer the chosen answer over the rejected answer.
 
 ``` python
 from trl import DPOTrainer
@@ -186,6 +214,12 @@ dpo_trainer.model.save_pretrained("TinyLlama-1.1B-dpo-qlora")
     {'loss': 0.5592, 'grad_norm': 1.8062045574188232, 'learning_rate': 7.615242180436521e-10, 'rewards/chosen': 0.0001696743129286915, 'rewards/rejected': -0.602738082408905, 'rewards/accuracies': 0.4437499940395355, 'rewards/margins': 0.6029077768325806, 'logps/rejected': -158.17510986328125, 'logps/chosen': -125.03792572021484, 'logits/rejected': -2.7029008865356445, 'logits/chosen': -2.615089178085327, 'epoch': 0.54}
     {'train_runtime': 1589.5837, 'train_samples_per_second': 2.013, 'train_steps_per_second': 0.126, 'train_loss': 0.5950200676918029, 'epoch': 0.54}
 
+The training logs show the preference margin generally increasing during the run. This is the key signal to watch in a DPO experiment: the model should become better at separating chosen responses from rejected responses.
+
+### Merging the Adapters
+
+After training, we merge the supervised fine-tuned model and the DPO LoRA adapter. This produces a model that can be loaded directly for inference without keeping the adapter stack separate.
+
 ``` python
 from peft import PeftModel
 
@@ -206,6 +240,10 @@ dpo_model = PeftModel.from_pretrained(
 )
 dpo_model = dpo_model.merge_and_unload()
 ```
+
+### Testing the DPO-Tuned Model
+
+Finally, we run a small text-generation test. This is not a full evaluation, but it is a quick sanity check that the merged model can load and respond with the expected prompt template.
 
 ``` python
 from transformers import pipeline
@@ -242,14 +280,9 @@ print(pipe(prompt, max_length=512, do_sample=True, temperature=0.7)[0]['generate
     Diffusion generative models are also effective in generating text. The model can generate text using a probabilistic framework, which allows it to generate text that is similar to the input text data. This makes it possible for the model to generate text that is relevant to the application and has the desired characteristics.
 
     In summary, diffusion generative models are an effective way to generate new data from a small amount of training data. They can generate data that is relevant to the application, have the desired characteristics, and can be used for many different applications.
-:::
-:::
 
-<!-- Headings are cool
-======
+The generated answer is fluent and stays on topic, which is enough for a smoke test. For a stronger evaluation, I would compare the DPO-tuned model against the SFT checkpoint on a held-out preference set, inspect win rates, and manually review samples where the chosen/rejected distinction is subtle.
 
-You can have many headings
-======
+### Takeaways
 
-Aren't headings cool?
------- -->
+DPO is useful because it turns alignment into a direct preference-learning problem. The workflow is still sensitive to data quality, prompt formatting, training stability, and evaluation. In this TinyLlama example, the important pieces are the preference-pair format, careful LoRA targeting, conservative training settings, and a final merge step that makes the model easier to use for inference.
