@@ -373,9 +373,13 @@ a {
 }
 
 #main .page--blog-post {
+  width: auto;
+  float: none;
   max-width: 44rem;
+  margin-right: 0;
   margin-left: 15rem;
   padding-left: 0;
+  padding-right: 0;
 }
 
 .blog-filter {
@@ -645,6 +649,10 @@ a {
 
   .blog-browser--post .blog-filter {
     left: auto;
+  }
+
+  #main .page--blog-post {
+    margin-left: 0;
   }
 
   .blog-index-intro {
