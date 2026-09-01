@@ -5,17 +5,28 @@
   if (!filter) return;
 
   const getTopicLabel = (topic) => topic.querySelector('[data-filter-label]').dataset.filterLabel;
+  const toggleTopic = (toggle) => {
+    const subtopics = document.getElementById(toggle.getAttribute('aria-controls'));
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    const itemLabel = toggle.dataset.toggleLabel || 'subtopics';
+
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    toggle.setAttribute('aria-label', `${expanded ? 'Expand' : 'Collapse'} ${getTopicLabel(toggle.closest('.blog-filter__topic'))} ${itemLabel}`);
+    toggle.textContent = expanded ? '+' : '-';
+    subtopics.hidden = expanded;
+  };
 
   filter.addEventListener('click', (event) => {
     const toggle = event.target.closest('.blog-filter__toggle');
     if (toggle) {
-      const subtopics = document.getElementById(toggle.getAttribute('aria-controls'));
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggleTopic(toggle);
+      return;
+    }
 
-      toggle.setAttribute('aria-expanded', String(!expanded));
-  toggle.setAttribute('aria-label', `${expanded ? 'Expand' : 'Collapse'} ${getTopicLabel(toggle.closest('.blog-filter__topic'))} subtopics`);
-      toggle.textContent = expanded ? '+' : '-';
-      subtopics.hidden = expanded;
+    const topicButton = event.target.closest('[data-topic-toggle]');
+    if (topicButton) {
+      const topicToggle = topicButton.closest('.blog-filter__topic').querySelector('.blog-filter__toggle');
+      if (topicToggle) toggleTopic(topicToggle);
       return;
     }
 

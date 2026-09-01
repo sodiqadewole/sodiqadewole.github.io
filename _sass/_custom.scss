@@ -490,6 +490,12 @@ a {
   text-decoration: none;
 }
 
+.blog-filter--post .blog-filter__subtopic {
+  padding-left: 0.65rem;
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
 .blog-tree {
   max-width: 44rem;
   margin: 0 0 0 15rem;
@@ -671,6 +677,10 @@ a {
 
   .blog-filter__subtopic {
     display: none;
+  }
+
+  .blog-filter--post .blog-filter__subtopic {
+    display: block;
   }
 
   .blog-card-grid {
