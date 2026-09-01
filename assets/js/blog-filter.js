@@ -4,6 +4,8 @@
 
   if (!filter || categories.length === 0) return;
 
+  const getTopicLabel = (topic) => topic.querySelector('[data-filter-label]').dataset.filterLabel;
+
   filter.addEventListener('click', (event) => {
     const toggle = event.target.closest('.blog-filter__toggle');
     if (toggle) {
@@ -11,7 +13,7 @@
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
 
       toggle.setAttribute('aria-expanded', String(!expanded));
-      toggle.setAttribute('aria-label', `${expanded ? 'Expand' : 'Collapse'} ${toggle.closest('.blog-filter__topic').querySelector('[data-filter-category]').textContent.trim()} subtopics`);
+  toggle.setAttribute('aria-label', `${expanded ? 'Expand' : 'Collapse'} ${getTopicLabel(toggle.closest('.blog-filter__topic'))} subtopics`);
       toggle.textContent = expanded ? '+' : '-';
       subtopics.hidden = expanded;
       return;
@@ -29,7 +31,7 @@
       const subtopics = topic && topic.querySelector('.blog-filter__subtopics');
       if (toggle && subtopics) {
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', `Collapse ${button.textContent.trim()} subtopics`);
+        toggle.setAttribute('aria-label', `Collapse ${getTopicLabel(topic)} subtopics`);
         toggle.textContent = '-';
         subtopics.hidden = false;
       }
