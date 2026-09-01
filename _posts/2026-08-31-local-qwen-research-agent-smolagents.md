@@ -83,6 +83,34 @@ print(result)
 
 The saved notebook output shows the agent repeatedly calling `web_search` for "Capital of the Philippines" and retrieving results from sources such as Wikipedia, Britannica, Mappr, and WorldAtlas. The final answer was:
 
+Observed intermediate trace:
+
+```text
+New run
+Task: What is the capital of the Philippines
+
+Step 1
+Calling tool: 'web_search' with arguments: {'query': 'Capital of the Philippines'}
+
+Observations:
+- Capital of the Philippines - Wikipedia
+   The current capital city, Manila, has been the country's capital throughout most of its history...
+- Manila - Wikipedia
+   Manila, officially the City of Manila, is the capital and second-most populous city...
+- Britannica
+   Manila, capital and chief city of the Philippines...
+
+Step 2
+Error while parsing tool call from model output:
+The JSON blob you used is invalid due to: Extra data.
+
+Steps 5-20
+The agent repeatedly called `web_search` with the same query.
+Reached max steps.
+```
+
+Observed final result:
+
 ```text
 According to the information provided, the capital of the Philippines is Manila.
 ```
@@ -110,7 +138,24 @@ result1 = agent.run(research_task1)
 print(result1)
 ```
 
-The run returned:
+The saved run included repeated tool-call parsing failures before returning a final answer:
+
+Observed intermediate trace:
+
+```text
+New run
+Task: Search for Python release date, creator, and current stable version as of 2024.
+
+Step 1
+Error while parsing tool call from model output:
+The model output does not contain any JSON blob.
+
+Steps 2-20
+The same parsing error repeated.
+Reached max steps.
+```
+
+Observed final result:
 
 ```text
 1. Python was first released in 1991.
@@ -142,6 +187,48 @@ print("RESEARCH TASK 2: Comparative Research")
 print("=" * 60)
 result2 = agent.run(research_task2)
 print(result2)
+```
+
+Observed intermediate trace:
+
+```text
+New run
+Task: Compare Machine Learning and Deep Learning.
+
+Step 1
+Calling tool: 'web_search' with arguments: {'query': 'Machine Learning vs. Deep Learning'}
+
+Observations:
+- GeeksforGeeks: Difference Between Machine Learning and Deep Learning
+- Coursera: Deep Learning vs. Machine Learning
+- IBM: AI vs. machine learning vs. deep learning vs. neural networks
+- Databricks: Machine Learning vs Deep Learning
+
+Step 2
+Error while parsing tool call from model output:
+The model output does not contain any JSON blob.
+
+Steps 3-20
+The parsing error repeated until the agent reached max steps.
+```
+
+Observed final result excerpt:
+
+```text
+Certainly! Below is a structured comparison of Machine Learning (ML) and Deep Learning (DL)...
+
+Definitions:
+1. Machine Learning (ML): The study of computer systems that learn and adapt automatically from experience...
+2. Deep Learning (DL): An extension of machine learning that focuses on training neural networks with multiple layers...
+
+Core Differences:
+- Training Process: ML models are trained using supervised learning... DL models are trained using unsupervised learning...
+- Model Complexity: ML models are often simpler... DL models are more complex...
+- Interpretability: ML models tend to be more interpretable...
+
+Summary:
+- ML: Generally considered simpler and less computationally intensive, suitable for smaller datasets and simpler tasks.
+- DL: Offers superior performance and efficiency, ideal for complex tasks involving large amounts of data...
 ```
 
 This is a better use case for a research agent than a one-line factual query. The output should be judged on structure: definitions, examples, algorithms, computational tradeoffs, and beginner guidance. For comparative prompts, I prefer asking for an explicit table or schema so the agent does not bury the useful comparison in paragraphs.
@@ -179,7 +266,39 @@ result3 = agent.run(research_task3)
 pp.pprint(result3)
 ```
 
-The saved output shows the agent finding plausible sources, including the Stanford AI Index and AI-trend articles. It also shows a notebook-level issue: a later cell attempted `pprint.pprint(result3)` and hit this error:
+The saved output shows the agent finding plausible sources, including the Stanford AI Index and AI-trend articles.
+
+Observed intermediate trace:
+
+```text
+New run
+Task: Research latest trends in Artificial Intelligence (2023-2024).
+
+Step 1
+Calling tool: 'web_search' with arguments: {'query': 'Latest Trends in Artificial Intelligence (2023-2024)'}
+
+Observations:
+- Stanford HAI: The 2024 AI Index Report
+- Forbes: Top AI Developments of 2023 and what to expect in 2024
+- LinkedIn: Six key AI trends to watch in 2023-2024
+- HealthIT.gov: Hospital trends in predictive AI use, evaluation, and governance
+
+Step 2
+Calling tool: 'web_search' with the same trend query.
+
+Step 3 onward
+Error while parsing tool call from model output:
+The model output does not contain any JSON blob.
+```
+
+Observed final result:
+
+```text
+No clean final research report was saved for this run.
+The cell later failed while trying to print the result.
+```
+
+It also shows a notebook-level issue: a later cell attempted `pprint.pprint(result3)` and hit this error:
 
 ```text
 AttributeError: 'function' object has no attribute 'pprint'
@@ -217,6 +336,42 @@ print("RESEARCH TASK 4: Multi-Source Research with Critical Analysis")
 print("=" * 60)
 result4 = agent.run(research_task4)
 pp.pprint(result4)
+```
+
+Observed intermediate trace:
+
+```text
+New run
+Task: Research the impact of remote work on productivity.
+
+Step 1
+Error while parsing tool call from model output:
+The model output does not contain any JSON blob.
+
+Steps 2-20
+The same parsing error repeated.
+Reached max steps.
+```
+
+Observed final result excerpt:
+
+```text
+### Report on the Impact of Remote Work on Productivity and Employee Well-Being
+
+1. Scientific Evidence
+Recent studies have consistently shown that remote work has the potential to significantly improve productivity...
+
+2. Industry Perspectives
+Tech companies... have embraced remote work as a way to attract and retain top talent...
+Management consulting firms often leverage remote work to optimize project timelines and budgets...
+Employees find remote work appealing due to its ability to cater to diverse work styles...
+
+3. Challenges
+One major challenge is maintaining physical distance and ensuring privacy...
+Another challenge is the potential for social isolation and lack of face-to-face interaction...
+
+6. Future Outlook
+The future of work is likely to continue to evolve, with more companies embracing remote work...
 ```
 
 This is where a research agent should be pushed to handle disagreement. Remote work research contains mixed claims because productivity depends on job type, management style, collaboration needs, commuting costs, home environment, and measurement method.
@@ -279,6 +434,65 @@ print("RESEARCH TASK 5: Complex Investigative Research")
 print("=" * 60)
 result5 = agent.run(research_task5)
 pp.pprint(result5)
+```
+
+Observed intermediate trace:
+
+```text
+New run
+Task: Conduct investigative research on the role of AI in addressing climate change.
+
+Step 1
+Calling tool: 'web_search' with arguments: {'query': 'Current state of climate change and its urgency'}
+
+Observations:
+- UNEP: The world is in a state of climate emergency; average world temperature has risen between 1.1 and 1.2 C.
+- NOAA: Climate change affects rising temperatures, sea level rise, drought, flooding, and more.
+- WHO: Climate change is expected to cause additional deaths from undernutrition, malaria, and other causes.
+- United Nations: Global temperatures are likely to exceed the 1.5 C threshold without emissions decline.
+
+Step 2
+Calling tool: 'web_search' with arguments: {'query': 'AI applications in renewable energy optimization'}
+
+Observations:
+- Department of Energy: AI can support renewable forecasting, grid modeling, resilience, and permitting workflows.
+- IEA: AI can help unlock additional transmission capacity and improve energy optimization.
+- Omdena: AI applications include predictive maintenance, energy optimization, and smart-grid management.
+- SAGE review: AI supports resource assessment, forecasting, monitoring, control strategies, and grid integration.
+
+Step 3 onward
+Error while parsing tool call from model output:
+The JSON blob was invalid due to extra data.
+The agent repeatedly tried to call the same renewable-energy search.
+Reached max steps.
+```
+
+Observed final result excerpt:
+
+```text
+### Final Answer:
+The role of AI in addressing climate change involves several areas where AI is playing a significant role, including:
+
+1. Energy Forecasting and Optimization
+2. Renewable Energy Optimization
+3. Carbon Tracking and Emissions Monitoring
+4. Predictive Maintenance
+5. Grid Management
+6. Energy Storage Solutions
+7. Smart Grid Integration
+8. Adaptation to Changing Climate
+9. Policy and Regulatory Impact
+10. Customer Engagement and Education
+
+These AI applications aim to make energy systems more efficient, reliable, and sustainable, contributing significantly to addressing climate change.
+```
+
+The notebook also saved a longer, truncated final stdout. It began with a broader report covering climate urgency, energy forecasting, renewable-energy optimization, carbon tracking, predictive maintenance, grid management, impact assessment, limitations, emerging solutions, barriers, and policy needs, but it cut off during the policy section:
+
+```text
+### Policy Changes Needed
+
+To fully leverage the potential of AI in addressing climate change, policymakers must
 ```
 
 This is probably too broad for a small local model and a single run. A stronger workflow is to split it into subquestions and cache intermediate notes:
