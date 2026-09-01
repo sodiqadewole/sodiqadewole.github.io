@@ -24,11 +24,11 @@ wide_layout: true
           <div class="blog-filter__topic-header">
             <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}">{{ category.title }}</button>
             {% if sections.size > 0 %}
-              <button class="blog-filter__toggle" type="button" aria-expanded="true" aria-controls="blog-topic-{{ category.id }}" aria-label="Collapse {{ category.title }} subtopics">-</button>
+              <button class="blog-filter__toggle" type="button" aria-expanded="false" aria-controls="blog-topic-{{ category.id }}" aria-label="Expand {{ category.title }} subtopics">+</button>
             {% endif %}
           </div>
           {% if sections.size > 0 %}
-            <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}">
+            <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}" hidden>
               {% for section in sections %}
                 <button class="blog-filter__subtopic" type="button" data-filter-category="{{ category.id }}" data-filter-section="{{ section | slugify }}">{{ section }}</button>
               {% endfor %}
@@ -43,9 +43,10 @@ wide_layout: true
     {% for category in site.data.blog-categories %}
       {% assign category_posts = site.posts | where: "blog_category", category.id %}
       <section class="blog-tree__category" id="{{ category.id }}" data-blog-category="{{ category.id }}">
-        <details class="blog-tree__details" open>
+        <details class="blog-tree__details">
           <summary class="blog-tree__heading">
             <h2>{{ category.title }}</h2>
+            <span class="blog-tree__count">{{ category_posts.size }} {% if category_posts.size == 1 %}article{% else %}articles{% endif %}</span>
           </summary>
           <p class="blog-tree__description">{{ category.description }}</p>
 

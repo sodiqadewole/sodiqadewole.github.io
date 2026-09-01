@@ -41,6 +41,8 @@
 
       if (categoryMatches && categoryId !== 'all') {
         category.querySelector('.blog-tree__details').open = true;
+      } else if (categoryId === 'all') {
+        category.querySelector('.blog-tree__details').open = false;
       }
 
       category.querySelectorAll('[data-blog-section]').forEach((section) => {
