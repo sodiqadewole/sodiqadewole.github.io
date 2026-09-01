@@ -364,16 +364,18 @@ a {
 }
 
 .blog-browser--post {
-  position: fixed;
-  top: 7rem;
-  left: max(1rem, calc((100vw - 1280px) / 2 + 1rem));
-  width: 12rem;
-  z-index: 20;
+  position: relative;
 }
 
 .blog-browser--post .blog-filter {
-  position: static;
-  left: auto;
+  top: 0;
+  left: -2rem;
+}
+
+#main .page--blog-post {
+  max-width: 44rem;
+  margin-left: 15rem;
+  padding-left: 0;
 }
 
 .blog-filter {
