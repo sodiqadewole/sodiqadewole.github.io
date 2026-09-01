@@ -365,6 +365,7 @@ a {
 
 .blog-browser--post {
   position: relative;
+  margin-left: 4.2372881356%;
 }
 
 .blog-browser--post .blog-filter {
@@ -377,7 +378,7 @@ a {
   float: none;
   max-width: 44rem;
   margin-right: 0;
-  margin-left: 15rem;
+  margin-left: calc(15rem + 4.2372881356%);
   padding-left: 0;
   padding-right: 0;
 }

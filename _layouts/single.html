@@ -14,7 +14,7 @@ layout: default
   {% endunless %}
 {% endif %}
 
-<div id="main" role="main">
+<div id="main" class="{% if page.collection == 'posts' %}main--wide main--blog-post{% endif %}" role="main">
   {% include sidebar.html %}
 
   {% if page.collection == 'posts' %}
