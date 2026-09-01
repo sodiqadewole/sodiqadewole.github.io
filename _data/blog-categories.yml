@@ -1,7 +1,7 @@
 - id: llm-from-scratch
   title: LLM From Scratch
   description: Building the components of language models from first principles.
-  
+
 - id: transformers
   title: Transformers
   description: Architectures, attention mechanisms, and multimodal transformer applications.
@@ -19,5 +19,5 @@
   description: Policy optimization, value learning, and sequential decision making.
 
 - id: ai-agents
-  title: AI Agents
+  title: Agents
   description: Retrieval, tool use, orchestration, and production agent systems.
