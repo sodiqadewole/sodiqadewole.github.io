@@ -10,6 +10,26 @@
   title: LLM Finetuning and Post Training
   description: Alignment, adaptation, evaluation, and optimization of language models.
 
+- id: llm-prompting
+  title: LLM Prompting
+  description: Prompt design, instruction strategies, context shaping, and evaluation patterns.
+
+- id: multimodal-finetuning
+  title: Multimodal Finetuning
+  description: Adapting vision-language and multimodal models for specialized tasks.
+
+- id: rag-retrieval-and-ranking
+  title: RAG-Retrieval and Ranking
+  description: Retrieval pipelines, ranking strategies, vector search, and grounded generation.
+
+- id: agentic-memory-loops-and-harness
+  title: Agentic Memory Loops and Harness
+  description: Agent memory, feedback loops, evaluation harnesses, and orchestration patterns.
+
+- id: search-systems
+  title: Search Systems
+  description: Search infrastructure, dense retrieval, ranking, and result-quality optimization.
+
 - id: pytorch
   title: PyTorch
   description: Practical deep learning implementation patterns and tooling.
