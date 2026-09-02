@@ -33,6 +33,16 @@ What this post covers:
 - Running inference and converting generated extraction tokens back into JSON.
 - Interpreting the CUDA out-of-memory failure from the saved training run.
 
+## LLaVA-NeXT Image Processing at a Glance
+
+The official Hugging Face documentation describes LLaVA-NeXT as a model that combines a vision backbone and a language model. The original LLaVA-NeXT blog highlights one of the most important changes from LLaVA-1.5: dynamic high-resolution image processing, which preserves more visual detail by splitting images into grids instead of forcing everything through a single low-resolution square.
+
+![Original LLaVA-NeXT dynamic high-resolution image processing diagram](https://llava-vl.github.io/blog/assets/images/llava-1-6/high_res_arch_v2.png)
+
+Source: [LLaVA-NeXT: Improved reasoning, OCR, and world knowledge](https://llava-vl.github.io/blog/2024-01-30-llava-next/).
+
+For the document extraction workflow in this post, the practical implication is that receipt images can produce multiple visual crops or patches before reaching the language model. The processor prepares `pixel_values`, `image_sizes`, `input_ids`, and `attention_mask`; the vision tower produces image features; the multimodal projector maps those features into the language model's hidden space; and the decoder generates the extraction sequence. During QLoRA finetuning, the base model stays quantized and mostly frozen while LoRA adapters learn the document extraction behavior.
+
 ## Install Dependencies
 
 The notebook starts with the packages needed for multimodal finetuning: PyTorch, Transformers, Datasets, PEFT, BitsAndBytes, Lightning, and NLTK. The install line is commented out because it only needs to be run when the environment is not already prepared.
