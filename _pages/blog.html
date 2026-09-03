@@ -17,7 +17,7 @@ wide_layout: true
 
   <div class="blog-tree">
     {% for category in site.data.blog-categories %}
-      {% assign category_posts = site.posts | where: "blog_category", category.id %}
+      {% assign category_posts = site.posts | where: "blog_category", category.id | sort: "blog_order" %}
       <section class="blog-tree__category" id="{{ category.id }}" data-blog-category="{{ category.id }}">
         <details class="blog-tree__details">
           <summary class="blog-tree__heading">
@@ -30,39 +30,58 @@ wide_layout: true
             {% for section in sections %}
               <div class="blog-tree__branch" data-blog-section="{{ section | slugify }}">
                 <h3>{{ section }}</h3>
-                <div class="blog-card-grid">
-                  {% for post in category_posts %}
-                    {% if post.blog_section == section %}
-                      <a class="blog-card" href="{{ base_path }}{{ post.url }}">
-                        <span class="blog-card__eyebrow">{{ category.title }}</span>
-                        <h4>{{ post.title }}</h4>
-                        <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 155 }}</p>
-                        <span class="blog-card__meta">
+                {% assign section_posts = category_posts | where: "blog_section", section | sort: "blog_order" %}
+                {% assign series_list = section_posts | map: "blog_series" | compact | uniq | sort %}
+                {% for series in series_list %}
+                  {% assign series_posts = section_posts | where: "blog_series", series | sort: "blog_order" %}
+                  <div class="blog-doc-series" data-blog-series="{{ series | slugify }}">
+                    <h4>{{ series }}</h4>
+                    <ol class="blog-doc-list">
+                      {% for post in series_posts %}
+                        <li class="blog-doc-item">
+                          <a class="blog-doc-item__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                          <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
+                          <span class="blog-doc-item__meta">
+                            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                            {% if post.read_time %}<span>{{ post.content | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read</span>{% endif %}
+                          </span>
+                        </li>
+                      {% endfor %}
+                    </ol>
+                  </div>
+                {% endfor %}
+                {% assign section_unsorted_posts = section_posts | where_exp: "post", "post.blog_series == nil" %}
+                {% if section_unsorted_posts.size > 0 %}
+                  <ol class="blog-doc-list">
+                    {% for post in section_unsorted_posts %}
+                      <li class="blog-doc-item">
+                        <a class="blog-doc-item__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                        <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
+                        <span class="blog-doc-item__meta">
                           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
                           {% if post.read_time %}<span>{{ post.content | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read</span>{% endif %}
                         </span>
-                      </a>
-                    {% endif %}
-                  {% endfor %}
-                </div>
+                      </li>
+                    {% endfor %}
+                  </ol>
+                {% endif %}
               </div>
             {% endfor %}
 
             {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
             {% if ungrouped_posts.size > 0 %}
-              <div class="blog-card-grid blog-tree__posts">
+              <ol class="blog-doc-list blog-tree__posts">
                 {% for post in ungrouped_posts %}
-                  <a class="blog-card" href="{{ base_path }}{{ post.url }}">
-                    <span class="blog-card__eyebrow">{{ category.title }}</span>
-                    <h4>{{ post.title }}</h4>
-                    <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 155 }}</p>
-                    <span class="blog-card__meta">
+                  <li class="blog-doc-item">
+                    <a class="blog-doc-item__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                    <p>{{ post.blog_summary | default: post.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
+                    <span class="blog-doc-item__meta">
                       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
                       {% if post.read_time %}<span>{{ post.content | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read</span>{% endif %}
                     </span>
-                  </a>
+                  </li>
                 {% endfor %}
-              </div>
+              </ol>
             {% endif %}
           {% else %}
             <p class="blog-tree__empty">New articles coming soon.</p>

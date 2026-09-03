@@ -4,6 +4,8 @@ date: 2026-03-14
 permalink: /posts/2026/03/fine-tune-llm/
 blog_category: llm-finetuning-post-training
 blog_section: Preference Optimization
+blog_series: DPO
+blog_order: 20
 blog_summary: "Fine-tune TinyLlama with Direct Preference Optimization, from alignment-data preparation through training and model merging."
 tags:
   - LLM Finetuning

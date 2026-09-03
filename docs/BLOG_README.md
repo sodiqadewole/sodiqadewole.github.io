@@ -2,7 +2,8 @@
 
 This site uses a Markdown-first blog system. Posts live in `_posts/`, categories
 are defined in `_data/blog-categories.yml`, and the main blog page at `/blog/`
-groups posts automatically by category and section.
+groups posts automatically as a dense documentation index by category, section,
+series, and article title.
 
 ## Create a New Blog Post
 
@@ -28,6 +29,8 @@ date: 2026-09-01
 permalink: /posts/2026/09/attention-from-scratch/
 blog_category: llm-from-scratch
 blog_section: Transformer Building Blocks
+blog_series: Attention
+blog_order: 10
 blog_summary: "Build scaled dot-product attention step by step, from token embeddings to contextual representations."
 read_time: true
 tags:
@@ -39,9 +42,9 @@ tags:
 
 4. Write the article in Markdown.
 
-Blog posts do not render a table of contents by default. Use headings to structure
-the article, but do not add `{% include toc %}` to the post body unless you are
-intentionally opting into a custom TOC for a specific post.
+Blog posts render in a documentation-style reader with a left topic browser and a
+right "On this page" outline generated from headings. Use headings to structure
+the article, but do not add `{% include toc %}` to the post body.
 
 Use normal Markdown for prose, headings, links, images, tables, and fenced code
 blocks. MathJax is enabled, so inline math can use `$x_i$` and display math can
@@ -59,6 +62,8 @@ Required fields:
 Recommended fields:
 
 - `blog_section`: Subtopic shown under the category on the blog page.
+- `blog_series`: Optional nested series shown under the section in the left browser.
+- `blog_order`: Optional numeric order for docs-style navigation within a category.
 - `blog_summary`: Short card summary shown on `/blog/`.
 - `read_time: true`: Enables estimated reading time.
 - `tags`: Search and taxonomy metadata.
@@ -78,8 +83,27 @@ The section creates a nested subtopic inside that category:
 blog_section: Attention
 ```
 
-Posts with the same `blog_category` and `blog_section` are grouped together.
-If `blog_section` is omitted, the post appears directly under its category.
+For longer learning paths, add `blog_series` and `blog_order`:
+
+```yaml
+blog_section: Transformer Building Blocks
+blog_series: Attention
+blog_order: 10
+```
+
+The left topic browser uses this hierarchy:
+
+```text
+Category
+  Section
+    Series
+      Post title
+```
+
+Posts with the same `blog_category`, `blog_section`, and `blog_series` are grouped
+together. If `blog_series` is omitted, the post appears directly under its
+section. If `blog_section` is omitted, the post appears directly under its
+category.
 
 ## Add a New Blog Category
 
@@ -103,6 +127,22 @@ blog_section: Model Serving
 The main blog page will automatically show the new category because `_pages/blog.html`
 loops over `_data/blog-categories.yml`. The left topic browser will also pick it
 up automatically.
+
+## Blog Index Layout
+
+The blog index uses a documentation-style nested list rather than visual cards.
+The main content mirrors the left browser hierarchy:
+
+```text
+Category
+  Section
+    Series
+      Article title
+      Summary
+      Date / read time
+```
+
+This keeps tutorial sequences and technical notes easy to scan as the site grows.
 
 ## Add Visuals and Interactive Walkthroughs
 

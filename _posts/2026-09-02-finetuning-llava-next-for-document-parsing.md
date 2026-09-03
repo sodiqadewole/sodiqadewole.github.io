@@ -4,6 +4,8 @@ date: 2026-09-02
 permalink: /posts/2026/09/finetuning-llava-next-document-extraction/
 blog_category: multimodal-finetuning
 blog_section: Vision-Language Models
+blog_series: LLaVA-NeXT
+blog_order: 10
 blog_summary: "Fine-tune LLaVA-NeXT with QLoRA on CORD-V2 receipt images for JSON-style document extraction, from dataset formatting through collators, Lightning training, and inference parsing."
 read_time: true
 tags:

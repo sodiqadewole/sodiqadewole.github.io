@@ -4,6 +4,8 @@ date: 2026-08-31
 permalink: /posts/2026/08/understanding-grpo-loss-qwen/
 blog_category: llm-finetuning-post-training
 blog_section: Preference Optimization
+blog_series: GRPO
+blog_order: 40
 blog_summary: "Explain Group Relative Policy Optimization for Qwen2.5, from grouped rewards and advantages to clipping, KL penalties, and token-level loss computation."
 read_time: true
 tags:

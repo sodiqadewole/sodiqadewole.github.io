@@ -10,7 +10,8 @@
     {% endif %}
 
     {% for category in site.data.blog-categories %}
-      {% assign category_posts = site.posts | where: "blog_category", category.id %}
+      {% assign category_posts = site.posts | where: "blog_category", category.id | sort: "blog_order" %}
+      {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
       <div class="blog-filter__topic">
         <div class="blog-filter__topic-header">
           {% if include.mode == 'post' %}
@@ -30,7 +31,31 @@
         </div>
         {% if category_posts.size > 0 %}
           <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}"{% unless page.blog_category == category.id %} hidden{% endunless %}>
-            {% for post in category_posts %}
+            {% for section in sections %}
+              {% assign section_posts = category_posts | where: "blog_section", section %}
+              {% assign series_list = section_posts | map: "blog_series" | compact | uniq | sort %}
+              <div class="blog-filter__group">
+                <p class="blog-filter__group-title">{{ section }}</p>
+                {% if series_list.size > 0 %}
+                  {% for series in series_list %}
+                    {% assign series_posts = section_posts | where: "blog_series", series %}
+                    <div class="blog-filter__series">
+                      <p class="blog-filter__series-title">{{ series }}</p>
+                      {% for post in series_posts %}
+                        <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                      {% endfor %}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                {% assign section_unsorted_posts = section_posts | where_exp: "post", "post.blog_series == nil" %}
+                {% for post in section_unsorted_posts %}
+                  <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+                {% endfor %}
+              </div>
+            {% endfor %}
+
+            {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
+            {% for post in ungrouped_posts %}
               <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
             {% endfor %}
           </div>

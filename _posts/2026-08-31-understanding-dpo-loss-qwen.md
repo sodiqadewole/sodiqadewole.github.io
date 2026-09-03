@@ -4,6 +4,8 @@ date: 2026-08-31
 permalink: /posts/2026/08/understanding-dpo-loss-qwen/
 blog_category: llm-finetuning-post-training
 blog_section: Preference Optimization
+blog_series: DPO
+blog_order: 30
 blog_summary: "Explain Direct Preference Optimization loss for Qwen models, from sequence log probabilities to beta-scaled preference improvements."
 read_time: true
 tags:

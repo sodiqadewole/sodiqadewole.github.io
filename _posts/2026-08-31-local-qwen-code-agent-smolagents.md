@@ -4,6 +4,8 @@ date: 2026-08-31
 permalink: /posts/2026/08/local-qwen-code-agent-smolagents/
 blog_category: ai-agents
 blog_section: Code Agents
+blog_series: Local Qwen Agents
+blog_order: 30
 blog_summary: "Build a local code-execution agent with SmolAgents and Qwen2.5-0.5B-Instruct, then test it on arithmetic, data processing, text analysis, and algorithmic tasks."
 read_time: true
 tags:

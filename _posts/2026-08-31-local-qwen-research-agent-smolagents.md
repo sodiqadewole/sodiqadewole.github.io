@@ -4,6 +4,8 @@ date: 2026-08-31
 permalink: /posts/2026/08/local-qwen-research-agent-smolagents/
 blog_category: ai-agents
 blog_section: Research Agents
+blog_series: Local Qwen Agents
+blog_order: 40
 blog_summary: "Build a local research agent with SmolAgents, Qwen2.5-0.5B-Instruct, and DuckDuckGo search, then test it on factual lookup, comparison, trend analysis, and investigative research tasks."
 read_time: true
 tags:

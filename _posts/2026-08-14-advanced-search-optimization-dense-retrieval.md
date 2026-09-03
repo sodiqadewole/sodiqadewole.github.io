@@ -4,6 +4,8 @@ date: 2026-03-26
 permalink: /posts/2026/03/advanced-search-using-search-retrieval/
 blog_category: ai-agents
 blog_section: Retrieval-Augmented Generation
+blog_series: Local RAG Systems
+blog_order: 20
 blog_summary: "Improve search with dense retrieval, sentence embeddings, and semantic similarity ranking."
 tags:
   - Advanced Search Optimization using Dense Retrieval

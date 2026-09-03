@@ -4,6 +4,8 @@ date: 2026-03-26
 permalink: /posts/2026/03/retrieval-augmented-generation/
 blog_category: ai-agents
 blog_section: Retrieval-Augmented Generation
+blog_series: Local RAG Systems
+blog_order: 10
 blog_summary: "Build a local retrieval-augmented generation workflow with Phi-3-mini, LlamaCpp, and LangChain."
 tags:
   - Retrieval Augmented Generation

@@ -4,6 +4,8 @@ date: 2026-08-28
 permalink: /blog/category-slug/section-slug/post-slug/
 blog_category: transformers
 blog_section: Attention
+blog_series: Attention Basics
+blog_order: 10
 read_time: true
 tags:
   - transformers

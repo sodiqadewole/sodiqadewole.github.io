@@ -4,6 +4,8 @@ date: 2026-08-28
 permalink: /posts/2026/08/transformer-attention-walkthrough/
 blog_category: llm-from-scratch
 blog_section: Transformer Building Blocks
+blog_series: Attention
+blog_order: 10
 blog_summary: "Step through how a Transformer turns token embeddings into contextual representations using queries, keys, values, and softmax attention."
 tags:
   - Transformers
