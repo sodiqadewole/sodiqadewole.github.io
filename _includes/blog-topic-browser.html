@@ -1,66 +1,48 @@
 {% include base_path %}
 
-<nav class="blog-filter{% if include.mode == 'post' %} blog-filter--post{% endif %}" aria-label="Browse blog topics">
-  <p class="blog-filter__title">Browse topics</p>
-  <div class="blog-filter__content">
-    {% if include.mode == 'post' %}
-      <a class="blog-filter__button" href="{{ base_path }}/blog/">All topics</a>
-    {% else %}
-      <button class="blog-filter__button is-active" type="button" data-filter-category="all">All topics</button>
-    {% endif %}
+<nav class="blog-filter{% if include.mode == 'post' %} blog-filter--post{% endif %}" aria-label="Blog documentation">
+  <p class="blog-filter__title">Blog documentation</p>
+  <a class="blog-filter__all{% unless include.mode == 'post' %} is-active{% endunless %}" href="{{ base_path }}/blog/">All articles</a>
 
+  <ul class="blog-filter__tree">
     {% for category in site.data.blog-categories %}
       {% assign category_posts = site.posts | where: "blog_category", category.id | sort: "blog_order" %}
       {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
-      <div class="blog-filter__topic">
-        <div class="blog-filter__topic-header">
-          {% if include.mode == 'post' %}
-            <button class="blog-filter__button{% if page.blog_category == category.id %} is-active{% endif %}" type="button" data-topic-toggle data-filter-label="{{ category.title }}">
-              <span>{{ category.title }}</span>
-              <span class="blog-filter__count">{{ category_posts.size }}</span>
-            </button>
-          {% else %}
-            <button class="blog-filter__button" type="button" data-filter-category="{{ category.id }}" data-filter-label="{{ category.title }}">
-              <span>{{ category.title }}</span>
-              <span class="blog-filter__count">{{ category_posts.size }}</span>
-            </button>
-          {% endif %}
-          {% if category_posts.size > 0 %}
-            <button class="blog-filter__toggle" type="button" aria-expanded="{% if page.blog_category == category.id %}true{% else %}false{% endif %}" aria-controls="blog-topic-{{ category.id }}" aria-label="{% if page.blog_category == category.id %}Collapse{% else %}Expand{% endif %} {{ category.title }} articles" data-toggle-label="articles">{% if page.blog_category == category.id %}-{% else %}+{% endif %}</button>
-          {% endif %}
-        </div>
-        {% if category_posts.size > 0 %}
-          <div class="blog-filter__subtopics" id="blog-topic-{{ category.id }}"{% unless page.blog_category == category.id %} hidden{% endunless %}>
-            {% for section in sections %}
-              {% assign section_posts = category_posts | where: "blog_section", section %}
-              {% assign series_list = section_posts | map: "blog_series" | compact | uniq | sort %}
-              <div class="blog-filter__group">
-                <p class="blog-filter__group-title">{{ section }}</p>
-                {% if series_list.size > 0 %}
-                  {% for series in series_list %}
-                    {% assign series_posts = section_posts | where: "blog_series", series %}
-                    <div class="blog-filter__series">
-                      <p class="blog-filter__series-title">{{ series }}</p>
-                      {% for post in series_posts %}
-                        <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+      {% if category_posts.size > 0 %}
+        <li class="blog-filter__tree-item">
+          <details class="blog-filter__details"{% if page.blog_category == category.id %} open{% endif %}>
+            <summary class="blog-filter__summary">{{ category.title }}</summary>
+            <ul class="blog-filter__tree">
+              {% for section in sections %}
+                {% assign section_posts = category_posts | where: "blog_section", section %}
+                {% assign series_list = section_posts | map: "blog_series" | compact | uniq | sort %}
+                <li class="blog-filter__tree-item">
+                  <details class="blog-filter__details"{% if page.blog_category == category.id %} open{% endif %}>
+                    <summary class="blog-filter__summary">{{ section }}</summary>
+                    <ul class="blog-filter__tree">
+                      {% for series in series_list %}
+                        {% assign series_posts = section_posts | where: "blog_series", series %}
+                        <li class="blog-filter__series">{{ series }}</li>
+                        {% for post in series_posts %}
+                          <li><a class="blog-filter__link{% if page.url == post.url %} is-active{% endif %}"{% if page.url == post.url %} aria-current="page"{% endif %} href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+                        {% endfor %}
                       {% endfor %}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-                {% assign section_unsorted_posts = section_posts | where_exp: "post", "post.blog_series == nil" %}
-                {% for post in section_unsorted_posts %}
-                  <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-                {% endfor %}
-              </div>
-            {% endfor %}
-
-            {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
-            {% for post in ungrouped_posts %}
-              <a class="blog-filter__subtopic{% if page.url == post.url %} is-active{% endif %}" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+                      {% assign section_unsorted_posts = section_posts | where_exp: "post", "post.blog_series == nil" %}
+                      {% for post in section_unsorted_posts %}
+                        <li><a class="blog-filter__link{% if page.url == post.url %} is-active{% endif %}"{% if page.url == post.url %} aria-current="page"{% endif %} href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                </li>
+              {% endfor %}
+              {% assign ungrouped_posts = category_posts | where_exp: "post", "post.blog_section == nil" %}
+              {% for post in ungrouped_posts %}
+                <li><a class="blog-filter__link{% if page.url == post.url %} is-active{% endif %}"{% if page.url == post.url %} aria-current="page"{% endif %} href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </details>
+        </li>
+      {% endif %}
     {% endfor %}
-  </div>
+  </ul>
 </nav>
