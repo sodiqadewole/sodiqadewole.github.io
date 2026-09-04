@@ -107,16 +107,52 @@ layout: default
   </article>
 
   {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
-  {% if page.id and page.related and site.related_posts.size > 0 %}
+  {% if page.id and page.related %}
+    {% assign related_count = 0 %}
+    {% assign selected_related_urls = "|" %}
     <div class="page__related">
-      {% if site.data.ui-text[site.locale].related_label %}
-        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
-      {% endif %}
-      <div class="grid__wrapper">
-        {% for post in site.related_posts limit:4 %}
-          {% include archive-single.html type="grid" %}
+      <h4 class="page__related-title">Continue Reading</h4>
+      <ol class="related-posts">
+        {% if page.blog_category and page.blog_series %}
+          {% assign same_series_posts = site.posts | where: "blog_category", page.blog_category | where: "blog_series", page.blog_series %}
+          {% for post in same_series_posts %}
+            {% capture post_key %}|{{ post.url }}|{% endcapture %}
+            {% if post.url != page.url and related_count < 3 %}
+              {% unless selected_related_urls contains post_key %}
+                {% include related-post-item.html post=post %}
+                {% assign selected_related_urls = selected_related_urls | append: post_key %}
+                {% assign related_count = related_count | plus: 1 %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if page.blog_category %}
+          {% assign same_category_posts = site.posts | where: "blog_category", page.blog_category %}
+          {% for post in same_category_posts %}
+            {% capture post_key %}|{{ post.url }}|{% endcapture %}
+            {% if post.url != page.url and related_count < 3 %}
+              {% unless selected_related_urls contains post_key %}
+                {% include related-post-item.html post=post %}
+                {% assign selected_related_urls = selected_related_urls | append: post_key %}
+                {% assign related_count = related_count | plus: 1 %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% for post in site.posts %}
+          {% capture post_key %}|{{ post.url }}|{% endcapture %}
+          {% if post.url != page.url and related_count < 3 %}
+            {% unless selected_related_urls contains post_key %}
+              {% include related-post-item.html post=post %}
+              {% assign selected_related_urls = selected_related_urls | append: post_key %}
+              {% assign related_count = related_count | plus: 1 %}
+            {% endunless %}
+          {% endif %}
         {% endfor %}
-      </div>
+      </ol>
+      <a class="related-posts__all" href="{{ base_path }}/blog/">View all articles</a>
     </div>
   {% endif %}
 </div>

@@ -1,0 +1,10 @@
+{% assign related_post = include.post %}
+<li class="related-posts__item">
+  <a class="related-posts__title" href="{{ base_path }}{{ related_post.url }}" rel="permalink">{{ related_post.title }}</a>
+  {% if related_post.blog_summary or related_post.excerpt %}
+    <p class="related-posts__summary">{{ related_post.blog_summary | default: related_post.excerpt | markdownify | strip_html | strip_newlines }}</p>
+  {% endif %}
+  <p class="related-posts__meta">
+    <time datetime="{{ related_post.date | date_to_xmlschema }}">{{ related_post.date | date: "%B %-d, %Y" }}</time>{% if related_post.read_time %}<span>{% assign post = related_post %}{% include read-time.html %}</span>{% endif %}
+  </p>
+</li>
