@@ -2,6 +2,9 @@
 title: "PyTorch Basics: Tensors, Operations, and GPU Acceleration"
 date: 2023-09-03
 permalink: /posts/2023/09/pytorch-basics-tensors-operations-gpu/
+redirect_from:
+  - /posts/2026/09/pytorch-basics-tensors-operations-gpu/
+  - /posts/2026/09/pytorch-basics-tensors-operations-gpu
 blog_category: pytorch
 blog_section: PyTorch Basics
 blog_series: PyTorch Fundamentals
