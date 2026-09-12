@@ -814,6 +814,66 @@ a {
   content: "•";
 }
 
+.project-hero {
+  margin: 0 0 2rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  border-top: 3px solid var(--site-teal);
+  border-bottom: 1px solid var(--site-rule);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.project-hero__eyebrow {
+  margin: 0 0 0.55rem;
+  color: var(--site-teal-dark);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.project-hero h2 {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--site-ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  line-height: 1.18;
+}
+
+.project-hero__lede {
+  max-width: 42rem;
+  margin: 0.7rem 0 0;
+  color: var(--site-muted);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.project-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+}
+
+.project-hero__actions .btn {
+  margin: 0;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+}
+
+.project-hero__actions .btn--inverse {
+  color: var(--site-teal-dark);
+  border-color: var(--site-teal);
+  background: transparent;
+}
+
+.project-hero__actions .btn--inverse:hover {
+  color: #fff;
+  background: var(--site-teal);
+}
+
 .blog-tree__posts {
   margin-top: 1.4rem;
 }
