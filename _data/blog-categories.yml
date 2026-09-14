@@ -2,6 +2,10 @@
   title: LLM From Scratch
   description: Building the components of language models from first principles.
 
+- id: vision-language-modeling-from-scratch
+  title: Vision-Language Modeling From Scratch
+  description: Building vision encoders, image token pipelines, and multimodal modeling components from first principles.
+
 - id: transformers
   title: Transformers
   description: Architectures, attention mechanisms, and multimodal transformer applications.
