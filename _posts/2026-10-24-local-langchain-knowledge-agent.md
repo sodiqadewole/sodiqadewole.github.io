@@ -85,6 +85,20 @@ SQLite FTS5 returns BM25 values with the sign inverted from the traditional pres
 
 This is **lexical**, not semantic, search: there is no embedding model, vector database, stemming, or synonym expansion. A query can miss a passage when it uses different wording from the source. Joining terms with `OR` favors recall—a passage matching one query term can still be considered—while BM25 places passages with more useful term matches higher. That trade-off keeps the implementation local and lightweight, but it means retrieval quality still depends on the language used in the question and documents.
 
+## Example conversations
+
+These screenshots show the Streamlit interface retrieving local document passages and displaying source citations alongside the answers.
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/chat-motion-detection.png" alt="Local Knowledge Assistant answers a question about configuring camera motion detection and cites pages 49 and 50 of the network camera manual." loading="lazy">
+  <figcaption>Asking how to configure motion detection retrieves relevant passages from the camera manual, with page citations shown below the answer.</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/chat-supported-files.png" alt="Local Knowledge Assistant describes supported Markdown, text, and PDF files, including the need for OCR on scanned PDFs, with local source citations." loading="lazy">
+  <figcaption>Asking which file types the local index can search demonstrates a second grounded response with source labels.</figcaption>
+</figure>
+
 ## Measured indexing and retrieval latency
 
 The project measured the local retrieval pipeline on **October 24, 2026**. The test corpus contained two sources: the knowledge README and a 126-page network-camera manual. Together they were 1,859,629 bytes and produced 127 indexed chunks. Measurements ran on Linux x86-64 with Python 3.12.3, SQLite 3.45.1, and `pypdf` 6.21.2.
