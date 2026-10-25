@@ -1,5 +1,5 @@
 ---
-title: "Local Knowledge Assistant"
+title: "Local Agentic RAG Assistant"
 date: 2026-10-24
 permalink: /posts/2026/10/local-langchain-knowledge-agent/
 blog_category: ai-agents
