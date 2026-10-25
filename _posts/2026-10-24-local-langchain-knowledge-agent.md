@@ -103,6 +103,30 @@ These screenshots show the Streamlit interface retrieving local document passage
   <figcaption>Asking which file types the local index can search demonstrates a second grounded response with source labels.</figcaption>
 </figure>
 
+### Patent correction guidance
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/q5.png" alt="Chat prompt asking how patents are corrected." loading="lazy">
+  <figcaption>The question asks how patent corrections work.</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/chat_5.png" alt="Local Knowledge Assistant summarizes patent correction options and cites passages from local patent examination references." loading="lazy">
+  <figcaption>The assistant summarizes correction options and cites relevant sections of the local patent references.</figcaption>
+</figure>
+
+### Patent examination process
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/q6.png" alt="Chat prompt asking about the patent examination process." loading="lazy">
+  <figcaption>The question asks for an overview of the patent examination process.</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/local-knowledge-assistant/chat_6.png" alt="Local Knowledge Assistant summarizes the patent examination process with citations to local PDF references and reports response latency and token counts." loading="lazy">
+  <figcaption>The answer is grounded in several PDF passages and shows the recorded response latency and token counts.</figcaption>
+</figure>
+
 ## Measured indexing and retrieval latency
 
 The project measured the local retrieval pipeline on **October 24, 2026**. The test corpus contained two sources: the knowledge README and a 126-page network-camera manual. Together they were 1,859,629 bytes and produced 127 indexed chunks. Measurements ran on Linux x86-64 with Python 3.12.3, SQLite 3.45.1, and `pypdf` 6.21.2.
