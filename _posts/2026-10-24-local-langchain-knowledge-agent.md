@@ -7,11 +7,15 @@ blog_section: Local Knowledge Agents
 blog_summary: "A local LangChain chat agent combines Qwen2.5-VL, vLLM, and SQLite FTS5 BM25 to answer from private Markdown, text, and PDF files—with measured indexing and retrieval latency."
 read_time: true
 tags:
+  - Local RAG Assistant
+  - Local Assistant
+  - RAG
   - LangChain
+  - vLLM
+  - BM25
   - Local LLM
   - Qwen2.5-VL
   - Retrieval
-  - BM25
   - SQLite FTS5
 ---
 
