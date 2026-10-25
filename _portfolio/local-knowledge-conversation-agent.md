@@ -1,5 +1,5 @@
 ---
-title: "Local Knowledge Conversation Agent"
+title: "Local Knowledge Assistant"
 excerpt: "A local LangChain and Streamlit assistant powered by Qwen2.5-VL through vLLM, with private document search using SQLite FTS5 and BM25."
 collection: portfolio
 permalink: /portfolio/local-knowledge-conversation-agent/
