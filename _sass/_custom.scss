@@ -1603,13 +1603,13 @@ a {
 
 .blog-browser--index {
   display: flex;
-  gap: 10rem;
+  gap: 6.5rem;
   align-items: flex-start;
 }
 
 @media (min-width: 80em) {
   .blog-browser--index {
-    margin-left: -18rem;
+    margin-left: -26rem;
     margin-right: -6rem;
   }
 }
