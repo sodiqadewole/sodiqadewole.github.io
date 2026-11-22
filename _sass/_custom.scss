@@ -1607,34 +1607,15 @@ a {
   align-items: flex-start;
 }
 
-@media (min-width: 80em) {
-  .blog-browser--index {
-    margin-left: -26rem;
-    margin-right: -6rem;
-  }
-}
-
 .blog-browser--index .blog-filter {
   position: sticky;
   top: 1rem;
   left: auto;
-  flex: 0 0 30rem;
-  width: 30rem;
+  flex: 0 0 var(--blog-tree-width);
+  width: var(--blog-tree-width);
   padding-right: 3rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
-}
-
-@media (min-width: 80em) {
-  .blog-browser--post .blog-filter {
-    left: -26rem;
-    width: 30rem;
-    padding-right: 3rem;
-  }
-
-  #main .page--blog-post {
-    margin-left: calc(9rem + 4.2372881356%);
-  }
 }
 
 .blog-browser--index .blog-home {
@@ -1661,5 +1642,42 @@ a {
     margin-bottom: 1rem;
     border-right: 0;
     border-bottom: 1px solid var(--site-rule);
+  }
+}
+
+/* Tree anchors to the viewport's left edge and scales with screen width. */
+:root {
+  --blog-tree-width: clamp(15rem, 24vw, 30rem);
+}
+
+body {
+  overflow-x: clip;
+}
+
+@media (min-width: 64em) {
+  .blog-browser--index {
+    box-sizing: border-box;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0 2rem;
+  }
+
+  #main.main--blog-post {
+    position: relative;
+  }
+
+  .blog-browser--post {
+    position: static;
+    margin-left: 0;
+  }
+
+  .blog-browser--post .blog-filter {
+    left: calc(50% - 50vw + 2rem);
+    width: var(--blog-tree-width);
+    padding-right: 3rem;
+  }
+
+  #main .page--blog-post {
+    margin-left: max(0px, calc(7rem + var(--blog-tree-width) - (100vw - 100%) / 2));
   }
 }
