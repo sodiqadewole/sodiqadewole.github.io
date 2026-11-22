@@ -419,7 +419,7 @@ a {
 #main .page--blog-post {
   width: auto;
   float: none;
-  max-width: 44rem;
+  max-width: 58rem;
   margin-right: 0;
   margin-left: calc(15rem + 4.2372881356%);
   padding-left: 0;
@@ -636,7 +636,7 @@ a {
 }
 
 .blog-doc-item p {
-  max-width: 38rem;
+  max-width: 54rem;
   margin: 0.25rem 0 0.35rem;
   color: var(--site-muted);
   font-size: 0.8rem;
@@ -661,7 +661,7 @@ a {
 
 .page--blog-post + .page__related {
   float: none;
-  max-width: 44rem;
+  max-width: 58rem;
   margin: 2rem 0 0 calc(15rem + 4.2372881356%);
   padding-top: 0.85rem;
   border-top-color: var(--site-rule);
@@ -1519,7 +1519,7 @@ a {
   }
 }
 .blog-home {
-  max-width: 48rem;
+  max-width: 64rem;
   margin: 0 auto 2rem;
 }
 
