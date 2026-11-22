@@ -8,6 +8,8 @@ wide_layout: true
 
 {% include base_path %}
 
+<div class="blog-browser blog-browser--index">
+{% include blog-topic-browser.html mode="index" %}
 <div class="blog-home">
   <p class="blog-home__intro">Practical explorations in machine learning systems, language models, and applied AI.</p>
 
@@ -41,6 +43,7 @@ wide_layout: true
       </li>
     {% endfor %}
   </ol>
+</div>
 </div>
 
 <script src="{{ base_path }}/assets/js/blog-filter.js"></script>

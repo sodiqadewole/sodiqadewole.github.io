@@ -2,6 +2,12 @@
 
 <nav class="blog-filter{% if include.mode == 'post' %} blog-filter--post{% endif %}" aria-label="Blog documentation">
   <p class="blog-filter__title">Blog documentation</p>
+  {% if include.mode == 'index' %}
+  <div class="blog-filter__tools">
+    <button type="button" data-tree-action="expand">Expand all</button>
+    <button type="button" data-tree-action="collapse">Collapse all</button>
+  </div>
+  {% endif %}
   <a class="blog-filter__all{% unless include.mode == 'post' %} is-active{% endunless %}" href="{{ base_path }}/blog/">All articles</a>
 
   <ul class="blog-filter__tree">
@@ -10,8 +16,8 @@
       {% assign sections = category_posts | map: "blog_section" | compact | uniq | sort %}
       {% if category_posts.size > 0 %}
         <li class="blog-filter__tree-item">
-          <details class="blog-filter__details"{% if page.blog_category == category.id %} open{% endif %}>
-            <summary class="blog-filter__summary">{{ category.title }}</summary>
+          <details class="blog-filter__details" data-topic="{{ category.id }}"{% if page.blog_category == category.id %} open{% endif %}>
+            <summary class="blog-filter__summary">{{ category.title }} <span class="blog-filter__count">{{ category_posts.size }}</span></summary>
             <ul class="blog-filter__tree">
               {% for section in sections %}
                 {% assign section_posts = category_posts | where: "blog_section", section %}
