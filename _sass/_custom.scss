@@ -1603,7 +1603,7 @@ a {
 
 .blog-browser--index {
   display: flex;
-  gap: 6.5rem;
+  gap: 5rem;
   align-items: flex-start;
 }
 
@@ -1620,9 +1620,21 @@ a {
   left: auto;
   flex: 0 0 35rem;
   width: 35rem;
-  padding-right: 5rem;
+  padding-right: 3rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
+}
+
+@media (min-width: 80em) {
+  .blog-browser--post .blog-filter {
+    left: -26rem;
+    width: 35rem;
+    padding-right: 3rem;
+  }
+
+  #main .page--blog-post {
+    margin-left: calc(14rem + 4.2372881356%);
+  }
 }
 
 .blog-browser--index .blog-home {
