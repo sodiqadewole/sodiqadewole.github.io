@@ -7,13 +7,6 @@
     });
   }
 
-  document.querySelectorAll('.blog-filter__tools button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const open = button.dataset.treeAction === 'expand';
-      button.closest('.blog-filter').querySelectorAll('details').forEach((d) => { d.open = open; });
-    });
-  });
-
   // Blog index: topic chips + search. Topics come from _data/blog-categories.yml.
   const home = document.querySelector('.blog-home');
   if (!home) return;
