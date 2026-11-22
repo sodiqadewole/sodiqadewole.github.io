@@ -1603,7 +1603,7 @@ a {
 
 .blog-browser--index {
   display: flex;
-  gap: 3.5rem;
+  gap: 4rem;
   align-items: flex-start;
 }
 
@@ -1611,9 +1611,9 @@ a {
   position: sticky;
   top: 1rem;
   left: auto;
-  flex: 0 0 19rem;
-  width: 19rem;
-  padding-right: 1rem;
+  flex: 0 0 25rem;
+  width: 25rem;
+  padding-right: 2.5rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
 }
