@@ -1603,7 +1603,7 @@ a {
 
 .blog-browser--index {
   display: flex;
-  gap: 5rem;
+  gap: 2rem;
   align-items: flex-start;
 }
 
@@ -1678,6 +1678,6 @@ body {
   }
 
   #main .page--blog-post {
-    margin-left: max(0px, calc(7rem + var(--blog-tree-width) - (100vw - 100%) / 2));
+    margin-left: max(0px, calc(4rem + var(--blog-tree-width) - (100vw - 100%) / 2));
   }
 }
