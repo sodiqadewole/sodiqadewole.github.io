@@ -14,6 +14,9 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "Books"
+    url: /books/
+
   - title: "Education"
     url: /cv/#education
 
