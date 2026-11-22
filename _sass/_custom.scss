@@ -1607,6 +1607,13 @@ a {
   align-items: flex-start;
 }
 
+@media (min-width: 80em) {
+  .blog-browser--index {
+    margin-left: -18rem;
+    margin-right: -6rem;
+  }
+}
+
 .blog-browser--index .blog-filter {
   position: sticky;
   top: 1rem;
